@@ -1,0 +1,12 @@
+cd "C:\123456\jetzt - Kopie\aktuell bester\corba_best-main2"
+py tools\repo_to_json.py dump `
+  --root "C:\123456\jetzt - Kopie\aktuell bester\corba_best-main2" `
+  --out  "C:\123456\jetzt - Kopie\aktuell bester\corba_best-main2\repo2_dump.json.gz" `
+  --gzip --python-index
+
+
+cd "C:\123456\1\corba 4\corba"
+py tools\repo_to_json.py dump `
+  --root "C:\123456\1\corba 4\corba" `
+  --out  "C:\123456\1\corba 4\corba\repo1_dump.json.gz" `
+  --gzip --python-index

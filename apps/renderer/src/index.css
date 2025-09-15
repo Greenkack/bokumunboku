@@ -1,1 +1,6 @@
-@tailwind base;@tailwind components;@tailwind utilities;
+/* DEF: Tailwind Entry */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Optional: eigene Styles hier drunter */
