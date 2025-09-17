@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bokumunboku - PV Solar Calculator & PDF Generator</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .header {
+            text-align: center;
+            color: white;
+            margin-bottom: 40px;
+        }
+        
+        .header h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+        
+        .card {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+        
+        .feature {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
+        }
+        
+        .feature h3 {
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+        
+        .quick-start {
+            background: #f8f9fa;
+            border-left: 5px solid #667eea;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        
+        .code-block {
+            background: #1e1e1e;
+            color: #d4d4d4;
+            padding: 15px;
+            border-radius: 5px;
+            font-family: 'Courier New', monospace;
+            margin: 10px 0;
+            overflow-x: auto;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            padding: 12px 30px;
+            text-decoration: none;
+            border-radius: 25px;
+            margin: 10px;
+            transition: all 0.3s ease;
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+        
+        .stat {
+            text-align: center;
+            background: rgba(255,255,255,0.1);
+            padding: 20px;
+            border-radius: 10px;
+            color: white;
+        }
+        
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        
+        .footer {
+            text-align: center;
+            color: white;
+            opacity: 0.8;
+            margin-top: 50px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🌞 Bokumunboku</h1>
+            <p>PV Solar Calculator & PDF Generator</p>
+        </div>
+        
+        <div class="stats">
+            <div class="stat">
+                <div class="stat-number">7</div>
+                <div>PDF-Seiten</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number">100+</div>
+                <div>Berechnungen</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number">∞</div>
+                <div>Kunden</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number">⚡</div>
+                <div>Schnell</div>
+            </div>
+        </div>
+        
+        <div class="card">
+            <h2>🚀 Über das Projekt</h2>
+            <p>Bokumunboku ist eine umfassende Python-Anwendung für die professionelle Erstellung von Photovoltaik-Angeboten. Mit einer modernen Streamlit-Oberfläche, fortschrittlichen Berechnungsalgorithmen und einem intelligenten PDF-Template-System revolutioniert diese Anwendung die Art, wie Solarangebote erstellt werden.</p>
+        </div>
+        
+        <div class="features-grid">
+            <div class="feature">
+                <div class="feature-icon">🧮</div>
+                <h3>Solar Calculator</h3>
+                <p>Präzise PV-Berechnungen mit Speicher-Integration und Autarkie-Simulation</p>
+            </div>
+            
+            <div class="feature">
+                <div class="feature-icon">📄</div>
+                <h3>PDF Engine</h3>
+                <p>7-seitiges Template-System mit dynamischen Overlays und YAML-Koordinaten</p>
+            </div>
+            
+            <div class="feature">
+                <div class="feature-icon">👥</div>
+                <h3>CRM System</h3>
+                <p>Vollständige Kundenverwaltung mit SQLite-Backend und Dokumentenarchiv</p>
+            </div>
+            
+            <div class="feature">
+                <div class="feature-icon">🎨</div>
+                <h3>Streamlit UI</h3>
+                <p>Moderne, intuitive Web-Oberfläche für alle Funktionen</p>
+            </div>
+            
+            <div class="feature">
+                <div class="feature-icon">🔥</div>
+                <h3>Wärmepumpen</h3>
+                <p>Integration von Wärmepumpen-Berechnungen und -Angeboten</p>
+            </div>
+            
+            <div class="feature">
+                <div class="feature-icon">⚡</div>
+                <h3>Batch Processing</h3>
+                <p>Erstellen Sie mehrere Angebote gleichzeitig für verschiedene Kunden</p>
+            </div>
+        </div>
+        
+        <div class="card">
+            <h2>🛠️ Quick Start</h2>
+            <div class="quick-start">
+                <h3>Installation</h3>
+                <div class="code-block">
+# Repository klonen
+git clone https://github.com/Greenkack/bokumunboku.git
+cd bokumunboku
+
+# Abhängigkeiten installieren
+pip install -r requirements.txt
+
+# Anwendung starten
+streamlit run gui.py
+                </div>
+            </div>
+        </div>
+        
+        <div class="card">
+            <h2>🧮 Neue Berechnungsformeln (2025)</h2>
+            <p>Das System verwendet fortschrittliche Algorithmen für präzise Speicher- und Energieberechnungen:</p>
+            <div class="code-block">
+# Speicherladung pro Jahr
+speicherladung_jahr_kwh = speicher_kapazitaet_kwh * 300
+
+# Energieverteilung (3/8 : 5/8 Regel)
+direktverbrauch_kwh = (pv_produktion - speicherladung) * 3/8
+einspeisung_kwh = (pv_produktion - speicherladung) * 5/8
+
+# Wirtschaftlichkeitsberechnung
+ersparnis_eur = speichernutzung_kwh * 0.27  # Stromtarif
+einnahmen_eur = einspeisung_kwh * 0.079     # EEG-Vergütung
+            </div>
+        </div>
+        
+        <div class="card">
+            <h2>📊 Technische Features</h2>
+            <ul style="list-style: none; padding: 0;">
+                <li>✅ <strong>7-seitiges PDF-Template System</strong> - Professionelle Angebote</li>
+                <li>✅ <strong>YAML-basierte Koordinaten</strong> - Flexible Positionierung</li>
+                <li>✅ <strong>SQLite CRM-Backend</strong> - Kundenverwaltung</li>
+                <li>✅ <strong>Dynamische Berechnungen</strong> - Individuelle Kundenparameter</li>
+                <li>✅ <strong>Progress Tracking</strong> - Echtzeit-Fortschrittsanzeige</li>
+                <li>✅ <strong>Security Features</strong> - SQL Injection Schutz</li>
+                <li>✅ <strong>Stream Processing</strong> - Speicher-effiziente PDF-Erstellung</li>
+                <li>✅ <strong>Test Suite</strong> - Umfassende Qualitätssicherung</li>
+            </ul>
+        </div>
+        
+        <div class="card">
+            <h2>🎯 Anwendungsbereiche</h2>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
+                <div>
+                    <h3>🏠 Wohngebäude</h3>
+                    <p>Einfamilienhäuser, Mehrfamilienhäuser, Doppelhaushälften</p>
+                </div>
+                <div>
+                    <h3>🏢 Gewerbe</h3>
+                    <p>Bürogebäude, Lagerhallen, Produktionsstätten</p>
+                </div>
+                <div>
+                    <h3>🔋 Speichersysteme</h3>
+                    <p>Batteriespeicher, Hybridwechselrichter, Notstromfunktion</p>
+                </div>
+                <div>
+                    <h3>🌡️ Wärmepumpen</h3>
+                    <p>Luft-Wasser, Sole-Wasser, Integration mit PV</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="card">
+            <h2>🔗 Links & Ressourcen</h2>
+            <div style="text-align: center;">
+                <a href="https://github.com/Greenkack/bokumunboku" class="btn">GitHub Repository</a>
+                <a href="https://github.com/Greenkack/bokumunboku/issues" class="btn">Issues & Support</a>
+                <a href="https://github.com/Greenkack/bokumunboku/wiki" class="btn">Dokumentation</a>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>Made with ❤️ by <strong>Greenkack</strong></p>
+            <p>© 2025 Bokumunboku - PV Solar Calculator & PDF Generator</p>
+        </div>
+    </div>
+    
+    <script>
+        // Smooth scrolling animation
+        document.addEventListener('DOMContentLoaded', function() {
+            const cards = document.querySelectorAll('.card, .feature');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            });
+            
+            cards.forEach(card => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(card);
+            });
+        });
+    </script>
+</body>
+</html>
