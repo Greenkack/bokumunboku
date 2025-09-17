@@ -1,0 +1,92 @@
+name,distinct_impls,files
+__init__,32,.\ai_companion.py | .\calculations.py | .\central_pdf_system.py | .\components\__init__.py | .\components\progress_manager.py | .\crm_calendar_ui.py | .\crm_pipeline_ui.py | .\dev_tools\kakerlake_ultra_cleaner.py | .\dev_tools\kakerlake_ultra_cleaner_v2.py | .\dev_tools\kakerlake_ultra_cleaner_v3.py | .\excel_eval.py | .\mnt\data\kakerlake_ultra_cleaner.py | .\mnt\data\kakerlake_ultra_cleaner_v2.py | .\multi_offer_generator.py | .\multi_offer_generator_new.py | .\multi_offer_generator_old.py | .\notwendig oder nicht\wichtig\out_selected\patches\components\progress_manager.py.insert.py | .\pdf_atomizer.py | .\pdf_generator.py | .\pdf_helpers.py | .\pdf_preview.py | .\pdf_styles.py | .\pdf_widgets.py | .\tools\kakerlake_ultra_cleaner.py | .\tools\out_selected\patches\components\progress_manager.py.insert.py
+_draw_cover_letter,2,.\pdf_generator.py
+_draw_cover_page,2,.\pdf_generator.py
+_draw_custom_content,2,.\pdf_generator.py
+_draw_offer_table,2,.\pdf_generator.py
+_dummy_generate_offer_pdf,2,.\doc_output.py | .\pdf_ui.py
+_dummy_get_db_connection_ex,2,.\crm.py | .\product_db.py
+_dummy_get_db_connection_ie,2,.\crm.py | .\product_db.py
+_dummy_get_product_by_model_name,2,.\admin_panel.py | .\solar_calculator.py
+_dummy_list_products,2,.\admin_panel.py | .\solar_calculator.py
+_dummy_load_admin_setting_pdf_ui,2,.\doc_output.py | .\pdf_ui.py
+_generate_company_pdf,2,.\multi_offer_generator.py | .\multi_offer_generator_new.py
+_initialize_session_state,2,.\central_pdf_system.py | .\components\progress_manager.py | .\notwendig oder nicht\wichtig\out_selected\patches\components\progress_manager.py.insert.py | .\tools\out_selected\patches\components\progress_manager.py.insert.py
+_norm_key,3,.\pdf_atomizer.py | .\pdf_template_engine\placeholders.py | .\tools\import_module_attributes_generic.py
+_prepare_offer_data,2,.\multi_offer_generator.py | .\multi_offer_generator_new.py
+autopatch_annual_savings,3,.\dev_tools\kakerlake_ultra_cleaner.py | .\dev_tools\kakerlake_ultra_cleaner_v2.py | .\dev_tools\kakerlake_ultra_cleaner_v3.py | .\mnt\data\kakerlake_ultra_cleaner.py | .\mnt\data\kakerlake_ultra_cleaner_v2.py | .\tools\kakerlake_ultra_cleaner.py
+autopatch_project_data,3,.\dev_tools\kakerlake_ultra_cleaner.py | .\dev_tools\kakerlake_ultra_cleaner_v2.py | .\dev_tools\kakerlake_ultra_cleaner_v3.py | .\mnt\data\kakerlake_ultra_cleaner.py | .\mnt\data\kakerlake_ultra_cleaner_v2.py | .\tools\kakerlake_ultra_cleaner.py
+calculate_detailed_co2_analysis,2,.\calculations.py
+calculate_lcoe,2,.\calculations_extended.py
+calculate_savings,2,.\notwendig oder nicht\custom_dynamic_calculation.py | .\notwendig oder nicht\wichtig\out_selected\patches\tools\custom_dynamic_calculation.py.insert.py | .\notwendig oder nicht\wichtig\portings\patches\tools\custom_dynamic_calculation.py.insert.py | .\tools\custom_dynamic_calculation.py | .\tools\out_selected\patches\tools\custom_dynamic_calculation.py.insert.py | .\tools\portings\patches\tools\custom_dynamic_calculation.py.insert.py
+calculate_shading_analysis,2,.\calculations.py
+calculate_subsidy_scenarios,2,.\calculations.py
+create_progress_bar,3,.\components\__init__.py | .\components\progress_manager.py | .\notwendig oder nicht\wichtig\out_selected\patches\components\progress_manager.py.insert.py | .\tools\out_selected\patches\components\progress_manager.py.insert.py
+create_test_pdf_with_logos,2,.\notwendig oder nicht\wichtig\portings\patches\test_final_pdf_logos.py.insert.py | .\tests\test_final_pdf_logos.py | .\tools\portings\patches\test_final_pdf_logos.py.insert.py
+decorator,2,.\components\__init__.py | .\components\progress_manager.py | .\notwendig oder nicht\wichtig\out_selected\patches\components\progress_manager.py.insert.py | .\tools\out_selected\patches\components\progress_manager.py.insert.py
+do_structure,2,.\dev_tools\kakerlake_ultra_cleaner.py | .\dev_tools\kakerlake_ultra_cleaner_v2.py | .\mnt\data\kakerlake_ultra_cleaner.py | .\mnt\data\kakerlake_ultra_cleaner_v2.py | .\tools\kakerlake_ultra_cleaner.py
+draw,4,.\pdf_generator.py | .\pdf_helpers.py
+format_currency,2,.\analysis_utils.py | .\german_formatting.py
+format_kpi_value,4,.\analysis.py | .\calculations.py | .\live_preview_helpers.py | .\pdf_generator.py
+format_percentage,2,.\analysis_utils.py | .\german_formatting.py
+generate_and_download_offers,2,.\multi_offer_generator_old.py
+generate_multi_offers,2,.\multi_offer_generator.py | .\multi_offer_generator_new.py
+generate_optimization_suggestions,2,.\calculations.py
+get_active_company,2,.\database.py | .\tests\test_main_pdf.py | .\tools\test_main_pdf.py
+get_available_companies,3,.\multi_offer_generator.py | .\multi_offer_generator_new.py | .\multi_offer_generator_old.py
+get_brand_logo,2,.\brand_logo_db.py | .\database.py | .\notwendig oder nicht\wichtig\out_selected\patches\brand_logo_db.py.insert.py | .\notwendig oder nicht\wichtig\portings\patches\brand_logo_db.py.insert.py | .\tools\out_selected\patches\brand_logo_db.py.insert.py | .\tools\portings\patches\brand_logo_db.py.insert.py
+get_db_connection,3,.\brand_logo_db.py | .\crm.py | .\database.py
+get_product_by_id,2,.\crm.py | .\product_db.py
+get_product_by_model_name,3,.\crm.py | .\heatpump_pricing.py | .\product_db.py
+get_text,4,.\analysis.py | .\analysis_utils.py | .\locales.py | .\pdf_generator.py
+get_text_mog,2,.\multi_offer_generator.py | .\multi_offer_generator_new.py | .\multi_offer_generator_old.py
+info,2,.\calculations.py
+initialize_session_state,6,.\ai_companion.py | .\multi_offer_generator.py | .\multi_offer_generator_new.py | .\multi_offer_generator_old.py | .\pdf_styles.py | .\pdf_widgets.py
+integrate_advanced_calculations,2,.\analysis.py
+leave_Assign,6,.\dev_tools\kakerlake_ultra_cleaner.py | .\dev_tools\kakerlake_ultra_cleaner_v2.py | .\dev_tools\kakerlake_ultra_cleaner_v3.py | .\mnt\data\kakerlake_ultra_cleaner.py | .\mnt\data\kakerlake_ultra_cleaner_v2.py | .\tools\kakerlake_ultra_cleaner.py
+leave_Module,4,.\dev_tools\kakerlake_ultra_cleaner.py | .\dev_tools\kakerlake_ultra_cleaner_v2.py | .\dev_tools\kakerlake_ultra_cleaner_v3.py | .\mnt\data\kakerlake_ultra_cleaner.py | .\mnt\data\kakerlake_ultra_cleaner_v2.py | .\tools\kakerlake_ultra_cleaner.py
+leave_SimpleStatementLine,3,.\dev_tools\kakerlake_ultra_cleaner.py | .\dev_tools\kakerlake_ultra_cleaner_v2.py | .\dev_tools\kakerlake_ultra_cleaner_v3.py | .\mnt\data\kakerlake_ultra_cleaner.py | .\mnt\data\kakerlake_ultra_cleaner_v2.py | .\tools\kakerlake_ultra_cleaner.py
+list_products,3,.\crm.py | .\heatpump_pricing.py | .\product_db.py
+list_py,2,.\dev_tools\kakerlake_ultra_cleaner.py | .\dev_tools\kakerlake_ultra_cleaner_v2.py | .\dev_tools\kakerlake_ultra_cleaner_v3.py | .\mnt\data\kakerlake_ultra_cleaner.py | .\mnt\data\kakerlake_ultra_cleaner_v2.py | .\tools\kakerlake_ultra_cleaner.py
+load_admin_setting,6,.\analysis.py | .\crm.py | .\database.py | .\options.py | .\pdf_template_engine\dynamic_overlay.py
+load_all_products,2,.\multi_offer_generator.py | .\multi_offer_generator_new.py | .\multi_offer_generator_old.py
+log,3,.\dev_tools\kakerlake_ultra_cleaner_v2.py | .\dev_tools\kakerlake_ultra_cleaner_v3.py | .\mnt\data\kakerlake_ultra_cleaner_v2.py | .\pdf_atomizer.py
+main,17,.\components\progress_demo.py | .\debug_page3_check.py | .\dev_tools\kakerlake_ultra_cleaner.py | .\dev_tools\kakerlake_ultra_cleaner_v2.py | .\dev_tools\kakerlake_ultra_cleaner_v3.py | .\gui.py | .\mnt\data\kakerlake_ultra_cleaner.py | .\mnt\data\kakerlake_ultra_cleaner_v2.py | .\multi_offer_generator.py | .\multi_offer_generator_new.py | .\notwendig oder nicht\calculations_cli.py | .\notwendig oder nicht\keine ahnung\calculations_cli.py | .\notwendig oder nicht\need or not\calculations_cli.py | .\notwendig oder nicht\wichtig\portings\patches\debug_page3_check.py.insert.py | .\notwendig oder nicht\wichtig\repo_porter.py | .\notwendig oder nicht\wichtig\repo_porter_select.py | .\notwendig oder nicht\wichtig\repo_to_json.py | .\pdf_atomizer.py | .\pdf_erstellen_komplett.py | .\tools\kakerlake_ultra_cleaner.py | .\tools\portings\patches\debug_page3_check.py.insert.py | .\tools\repo_porter.py | .\tools\repo_porter_select.py | .\tools\repo_to_json.py | .\tools\schema_extractor.py | .\tools\smoke_crm_save.py | .\tools\xlsx_validator.py
+merge_pdfs,2,.\pdf_generator.py
+name_in,2,.\dev_tools\kakerlake_ultra_cleaner.py | .\dev_tools\kakerlake_ultra_cleaner_v2.py | .\dev_tools\kakerlake_ultra_cleaner_v3.py | .\mnt\data\kakerlake_ultra_cleaner.py | .\mnt\data\kakerlake_ultra_cleaner_v2.py | .\tools\kakerlake_ultra_cleaner.py
+node_signature,2,.\dev_tools\kakerlake_ultra_cleaner.py | .\mnt\data\kakerlake_ultra_cleaner.py | .\notwendig oder nicht\wichtig\repo_porter.py | .\tools\kakerlake_ultra_cleaner.py | .\tools\repo_porter.py
+parse_float,2,.\pdf_template_engine\placeholders.py
+parse_module_price_matrix_excel,2,.\admin_panel.py | .\calculations.py
+perform_calculations,2,.\analysis.py | .\calculations.py
+process,6,.\dev_tools\kakerlake_ultra_cleaner.py | .\dev_tools\kakerlake_ultra_cleaner_v2.py | .\dev_tools\kakerlake_ultra_cleaner_v3.py | .\mnt\data\kakerlake_ultra_cleaner.py | .\mnt\data\kakerlake_ultra_cleaner_v2.py | .\tools\kakerlake_ultra_cleaner.py
+render_co2_savings_value_switcher,2,.\analysis.py
+render_company_selection,3,.\multi_offer_generator.py | .\multi_offer_generator_new.py | .\multi_offer_generator_old.py
+render_customer_input,2,.\multi_offer_generator.py | .\multi_offer_generator_new.py | .\multi_offer_generator_old.py
+render_live_cost_preview,2,.\gui.py | .\live_preview_helpers.py
+render_multi_offer_generator,3,.\multi_offer_generator.py | .\multi_offer_generator_old.py
+render_offer_configuration,3,.\multi_offer_generator.py | .\multi_offer_generator_new.py | .\multi_offer_generator_old.py
+render_pdf_ui,2,.\doc_output.py | .\pdf_ui.py
+render_pricing_modifications_ui,2,.\analysis.py
+render_progress_settings,2,.\components\__init__.py | .\components\progress_settings.py | .\notwendig oder nicht\wichtig\out_selected\patches\components\progress_settings.py.insert.py | .\notwendig oder nicht\wichtig\portings\patches\components\progress_settings.py.insert.py | .\tools\out_selected\patches\components\progress_settings.py.insert.py | .\tools\portings\patches\components\progress_settings.py.insert.py
+render_quick_themes,2,.\components\__init__.py | .\components\progress_settings.py | .\notwendig oder nicht\wichtig\out_selected\patches\components\progress_settings.py.insert.py | .\notwendig oder nicht\wichtig\portings\patches\components\progress_settings.py.insert.py | .\tools\out_selected\patches\components\progress_settings.py.insert.py | .\tools\portings\patches\components\progress_settings.py.insert.py
+render_tariff_cube_switcher,2,.\analysis.py
+render_ui,2,.\multi_offer_generator.py | .\multi_offer_generator_new.py | .\pdf_erstellen_komplett.py
+render_visualization_settings,2,.\admin_panel.py | .\pdf_styles.py
+run_all_tests,2,.\notwendig oder nicht\wichtig\portings\patches\test_hp_functions.py.insert.py | .\notwendig oder nicht\wichtig\portings\patches\test_logo_integration.py.insert.py | .\tests\test_hp_functions.py | .\tests\test_logo_integration.py | .\tools\portings\patches\test_hp_functions.py.insert.py | .\tools\portings\patches\test_logo_integration.py.insert.py
+save_admin_setting,3,.\database.py | .\options.py
+test_logo_data_preparation,2,.\notwendig oder nicht\wichtig\portings\patches\simple_logo_test.py.insert.py | .\simple_logo_test.py | .\tools\portings\patches\simple_logo_test.py.insert.py
+test_logo_debug,2,.\debug_logo_rendering.py | .\notwendig oder nicht\wichtig\portings\patches\debug_logo_rendering.py.insert.py | .\tools\portings\patches\debug_logo_rendering.py.insert.py
+test_logo_rendering_debug,2,.\debug_logo_pdf.py | .\notwendig oder nicht\wichtig\portings\patches\debug_logo_pdf.py.insert.py | .\tools\portings\patches\debug_logo_pdf.py.insert.py
+test_page1_right_aligned_values,2,.\notwendig oder nicht\wichtig\portings\patches\test_page1_alignment.py.insert.py | .\tests\test_page1_alignment.py | .\tools\portings\patches\test_page1_alignment.py.insert.py
+test_page3_values_baseline,2,.\notwendig oder nicht\wichtig\portings\patches\tools\test_page3_values.py.insert.py | .\tests\test_page3_values.py | .\tools\portings\patches\tools\test_page3_values.py.insert.py | .\tools\test_page3_values.py
+test_pdf_with_logos,2,.\notwendig oder nicht\wichtig\portings\patches\test_pdf_logos.py.insert.py | .\tests\test_pdf_logos.py | .\tools\portings\patches\test_pdf_logos.py.insert.py
+test_product_images,2,.\notwendig oder nicht\wichtig\portings\patches\test_product_images.py.insert.py | .\tests\test_product_images.py | .\tools\portings\patches\test_product_images.py.insert.py
+test_right_aligned_values,2,.\notwendig oder nicht\wichtig\portings\patches\test_right_alignment.py.insert.py | .\tests\test_right_alignment.py | .\tools\portings\patches\test_right_alignment.py.insert.py
+test_roof_data_from_analysis,2,.\notwendig oder nicht\wichtig\portings\patches\test_roof_data.py.insert.py | .\tests\test_roof_data.py | .\tools\portings\patches\test_roof_data.py.insert.py
+test_section_titles_and_logos,2,.\notwendig oder nicht\wichtig\portings\patches\test_section_titles_logos.py.insert.py | .\tests\test_section_titles_logos.py | .\tools\portings\patches\test_section_titles_logos.py.insert.py
+to_dict,2,.\heatpump_pricing.py | .\notwendig oder nicht\wichtig\out_selected\patches\heatpump_pricing.py.insert.py | .\pdf_styles.py | .\tools\out_selected\patches\heatpump_pricing.py.insert.py
+update,2,.\components\__init__.py | .\components\progress_manager.py | .\notwendig oder nicht\wichtig\out_selected\patches\components\progress_manager.py.insert.py | .\tools\out_selected\patches\components\progress_manager.py.insert.py
+wrap,3,.\pdf_generator.py | .\tools\pv_berechnungen_50.py
+wrapper,2,.\components\__init__.py | .\components\progress_manager.py | .\notwendig oder nicht\wichtig\out_selected\patches\components\progress_manager.py.insert.py | .\tools\out_selected\patches\components\progress_manager.py.insert.py
+write_text,3,.\dev_tools\kakerlake_ultra_cleaner.py | .\dev_tools\kakerlake_ultra_cleaner_v2.py | .\dev_tools\kakerlake_ultra_cleaner_v3.py | .\mnt\data\kakerlake_ultra_cleaner.py | .\mnt\data\kakerlake_ultra_cleaner_v2.py | .\notwendig oder nicht\wichtig\repo_porter.py | .\tools\kakerlake_ultra_cleaner.py | .\tools\repo_porter.py
+yaml_positions_check,2,.\dev_tools\kakerlake_ultra_cleaner.py | .\dev_tools\kakerlake_ultra_cleaner_v2.py | .\mnt\data\kakerlake_ultra_cleaner.py | .\mnt\data\kakerlake_ultra_cleaner_v2.py | .\tools\kakerlake_ultra_cleaner.py

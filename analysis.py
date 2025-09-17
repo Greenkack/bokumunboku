@@ -280,6 +280,8 @@ UI-Komponenten und Widgets für das Analyse-Dashboard
 
 import streamlit as st
 from typing import Dict, Any, Optional
+from calculations import compute_annual_savings
+from calculations import build_project_data
 
 
 def render_pricing_modifications_ui():
@@ -365,13 +367,13 @@ def _render_overview_section(results: Dict[str, Any], texts: Dict[str, str], viz
         mwst_ersparnis = 0.0
     
     # Amortisationszeit korrekt berechnen
-    annual_savings = results.get('annual_total_savings_euro', 0.0)
+    annual_savings = compute_annual_savings(results=results, default=0.0)
     annual_feedin_revenue = results.get('annual_feedin_revenue_euro', 0.0)
     annual_electricity_savings = results.get('annual_electricity_cost_savings_euro', 0.0)
     
     # Gesamteinsparungen berechnen (falls nicht direkt verfügbar)
     if annual_savings <= 0:
-        annual_savings = annual_feedin_revenue + annual_electricity_savings
+        annual_savings = compute_annual_savings(annual_feedin_revenue=annual_feedin_revenue, annual_electricity_savings=annual_electricity_savings, default=0.0)
     st.sidebar.write(f"Stromkostenersparnis: {annual_electricity_savings:.2f}€")
     st.sidebar.write(f"Einspeisevergütung: {annual_feedin_revenue:.2f}€")
     st.sidebar.write(f"Gesamteinsparung: {annual_savings:.2f}€")
@@ -502,7 +504,7 @@ def _render_overview_section(results: Dict[str, Any], texts: Dict[str, str], viz
     electricity_price_increase = results.get('electricity_price_increase_rate_effective_percent', 3.0)
     
     # Bedarfsanalyse-Daten holen für korrekte Berechnung
-    project_data = st.session_state.get('project_data', {})
+    project_data = build_project_data(st.session_state.get('project_data', {}))
     household_costs_monthly = project_data.get('stromkosten_haushalt_euro_monat', 0.0)
     heating_costs_monthly = project_data.get('stromkosten_heizung_euro_monat', 0.0)
     annual_total_costs_without_pv = (household_costs_monthly + heating_costs_monthly) * 12
@@ -5288,7 +5290,7 @@ def integrate_advanced_calculations(texts: Dict[str, str]):
 
     # System-Daten aus Session State holen
     calculation_results = st.session_state.get("calculation_results", {})
-    project_data = st.session_state.get("project_data", {})
+    project_data = build_project_data(st.session_state.get("project_data", {}))
 
     if not calculation_results:
         st.warning(
@@ -6663,7 +6665,7 @@ def prepare_financing_data_for_pdf_export(
             ]
 
         # Zusammenfassung der wichtigsten Finanzierungs-KPIs
-        project_data = st.session_state.get("project_data", {})
+        project_data = build_project_data(st.session_state.get("project_data", {}))
         customer_data = project_data.get("customer_data", {})
 
         financing_summary = {
@@ -7760,7 +7762,7 @@ def render_analysis(
 
     with col_pdf3:
         # Quick-Info über Finanzierungsoptionen
-        project_data = st.session_state.get("project_data", {})
+        project_data = build_project_data(st.session_state.get("project_data", {}))
         customer_data = project_data.get("customer_data", {})
         if customer_data.get("financing_requested", False):
             financing_type = customer_data.get("financing_type", "Nicht spezifiziert")
@@ -7827,7 +7829,7 @@ def render_financing_analysis(
     # Prüfen ob Finanzierung gewünscht ist
     financing_requested = False
     if "st" in globals() and hasattr(st, "session_state"):
-        project_data = st.session_state.get("project_data", {})
+        project_data = build_project_data(st.session_state.get("project_data", {}))
         customer_data = project_data.get("customer_data", {})
         financing_requested = customer_data.get("financing_requested", False)
 
@@ -8801,7 +8803,7 @@ def render_advanced_financial_analysis(results: Dict[str, Any], texts: Dict[str,
         feed_in_revenue = results.get('annual_revenue_feed_in_eur', 0.0)
         consumption_savings = results.get('annual_savings_consumption_eur', 0.0)
         if feed_in_revenue > 0 or consumption_savings > 0:
-            annual_savings = feed_in_revenue + consumption_savings
+            annual_savings = compute_annual_savings(annual_feedin_revenue=feed_in_revenue, annual_electricity_savings=consumption_savings, default=0.0)
     
     # Debug-Info (falls aktiviert)
     if results.get('app_debug_mode_enabled', False):

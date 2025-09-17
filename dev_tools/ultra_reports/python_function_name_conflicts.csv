@@ -1,0 +1,6 @@
+name,distinct_impls,files
+__init__,2,.\kakerlake_ultra_cleaner.py
+leave_Assign,2,.\kakerlake_ultra_cleaner.py
+leave_Module,2,.\kakerlake_ultra_cleaner.py
+name_in,2,.\kakerlake_ultra_cleaner.py
+process,2,.\kakerlake_ultra_cleaner.py

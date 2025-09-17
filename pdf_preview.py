@@ -17,11 +17,16 @@ try:
     from pdf_generator import generate_offer_pdf_simple as generate_offer_pdf
     from reportlab.lib.pagesizes import A4
     from reportlab.pdfgen import canvas
-    from PIL import Image
     import fitz  # PyMuPDF für PDF-zu-Bild-Konvertierung
     PDF_PREVIEW_AVAILABLE = True
 except ImportError:
     PDF_PREVIEW_AVAILABLE = False
+
+# PIL Image muss separat importiert werden, da es auch außerhalb der PDF-Funktionen verwendet wird
+try:
+    from PIL import Image
+except ImportError:
+    Image = None
 
 class PDFPreviewEngine:
     """Engine für PDF-Vorschau mit Cache und Optimierungen"""
@@ -343,6 +348,10 @@ def create_preview_thumbnail(pdf_bytes: bytes, page_num: int = 0, size: tuple = 
         img_data = pix.tobytes("png")
         
         # Bild laden und resizen
+        if Image is None:
+            print("PIL Image nicht verfügbar - Thumbnail kann nicht erstellt werden")
+            return None
+            
         img = Image.open(io.BytesIO(img_data))
         img.thumbnail(size, Image.Resampling.LANCZOS)
         

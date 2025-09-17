@@ -15,6 +15,7 @@ import plotly.express as px
 import plotly.graph_objects as go
 from datetime import datetime
 import math
+from calculations import compute_annual_savings
 
 # Import der notwendigen Funktionen
 try:
@@ -559,7 +560,7 @@ def render_economics_analysis(texts: Dict[str, str], heatpump_data: Dict[str, An
             else:
                 annual_old_cost = heat_demand_kwh * electricity_price / 100
             
-            annual_savings = annual_old_cost - annual_hp_cost
+            annual_savings = compute_annual_savings(annual_old_cost=annual_old_cost, annual_hp_cost=annual_hp_cost, default=0.0)
             payback_time = total_investment / annual_savings if annual_savings > 0 else float('inf')
             
             # Ergebnisse anzeigen
@@ -910,7 +911,7 @@ def render_results_summary(texts: Dict[str, str]):
             else:
                 annual_old_cost = heat_demand_kwh * electricity_price / 100
 
-            annual_savings = annual_old_cost - annual_hp_cost
+            annual_savings = compute_annual_savings(annual_old_cost=annual_old_cost, annual_hp_cost=annual_hp_cost, default=0.0)
             payback_time = total_investment / annual_savings if annual_savings > 0 else float('inf')
 
             st.session_state.economics_data = {
@@ -988,7 +989,7 @@ def render_results_summary(texts: Dict[str, str]):
     with col_summary4:
         annual_savings = economics_data['annual_savings']
         if integration_data:
-            annual_savings = integration_data.get('total_annual_savings', annual_savings)
+            annual_savings = compute_annual_savings(results=integration_data, default=annual_savings)
         
         st.metric(
             "Jährliche Ersparnis",
@@ -1039,6 +1040,10 @@ def render_results_summary(texts: Dict[str, str]):
     with col_export1:
         if st.button(" Ergebnisse als PDF exportieren"):
             try:
+                # Template-Debug temporär aktivieren
+                import os
+                os.environ["DING_TEMPLATE_DEBUG"] = "1"
+                
                 from pdf_generator import generate_offer_pdf
                 # Minimaler PV-Dummy damit Validator zufrieden ist
                 project_data_hp = {
@@ -1050,6 +1055,8 @@ def render_results_summary(texts: Dict[str, str]):
                         'anlage_kwp': 0.1,
                     },
                     'heatpump_offer': st.session_state.get('heatpump_offer'),
+                    # WICHTIG: Segment-Order für HP-Templates setzen
+                    'pdf_segment_order': ['Wärmepumpe']
                 }
                 analysis_results_hp = {
                     'anlage_kwp': 0.1,

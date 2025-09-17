@@ -8,6 +8,7 @@ import sys
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 
 from pdf_template_engine.placeholders import build_dynamic_data
+from calculations import build_project_data
 
 def test_section_titles_and_logos():
     """Teste die erweiterten Überschriften und Logo-Integration"""
@@ -15,7 +16,7 @@ def test_section_titles_and_logos():
     print("=" * 60)
     
     # Test-Daten mit allen notwendigen Werten
-    project_data = {
+    project_data = build_project_data({
         "customer_data": {
             "first_name": "Max",
             "last_name": "Mustermann"
@@ -42,7 +43,7 @@ def test_section_titles_and_logos():
                 "product_name": "Battery-Box Premium HVM"
             }
         }
-    }
+    })
     
     analysis_results = {
         "total_investment_netto": 25000,

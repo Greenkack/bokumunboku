@@ -871,13 +871,23 @@ def _remove_text_from_page(page, texts_to_remove: list[str]):
         pass  # Bei Fehlern einfach ignorieren
 
 
-def merge_with_background(overlay_bytes: bytes, bg_dir: Path) -> bytes:
-    """Verschmilzt das Overlay mit nt_nt_01.pdf … nt_nt_07.pdf aus bg_dir."""
+def merge_with_background(overlay_bytes: bytes, bg_dir: Path, template_prefix: str = "nt_nt") -> bytes:
+    """Verschmilzt das Overlay mit Templates aus bg_dir.
+    
+    Args:
+        overlay_bytes: Das Overlay-PDF als Bytes
+        bg_dir: Verzeichnis mit Template-PDFs
+        template_prefix: Präfix für Templates - "nt_nt" für PV, "hp_nt" für Wärmepumpen
+    """
     overlay_reader = PdfReader(io.BytesIO(overlay_bytes))
     writer = PdfWriter()
     for page_num in range(1, 8):
-        # Unterstütze beide Muster: nt_nt_XX.pdf und nt_XX.pdf
-        candidates = [bg_dir / f"nt_nt_{page_num:02d}.pdf", bg_dir / f"nt_{page_num:02d}.pdf"]
+        # Unterstütze verschiedene Template-Präfixe basierend auf Offer-Type
+        candidates = [
+            bg_dir / f"{template_prefix}_{page_num:02d}.pdf",  # z.B. hp_nt_01.pdf oder nt_nt_01.pdf
+            bg_dir / f"nt_nt_{page_num:02d}.pdf",  # Fallback für PV
+            bg_dir / f"nt_{page_num:02d}.pdf"  # Legacy-Fallback
+        ]
         bg_page = None
         for cand in candidates:
             if cand.exists():
@@ -933,58 +943,43 @@ def merge_with_background(overlay_bytes: bytes, bg_dir: Path) -> bytes:
                     t = Transformation().scale(scale, scale).translate(tx, ty)
                     base_page.merge_transformed_page(extra_bg_page, t)
                 except Exception:
-                    # Fallback: unskaliert mergen
-                    try:
-                        base_page.merge_page(extra_bg_page)
-                    except Exception:
-                        pass
-            # Overlay über den zusammengesetzten Hintergrund legen
+                    pass  # Fehler beim Mergen ignorieren
+            
+            # Overlay über Hintergrund legen
             base_page.merge_page(ov_page)
             writer.add_page(base_page)
         else:
-            # Kein Standard-Hintergrund: nur haus.pdf (falls vorhanden) als Basis, skaliert, dann Overlay
-            if extra_bg_page is not None and PageObject is not None:
-                try:
-                    # Erzeuge leere Basis-Seite in A4 (oder Größe des Overlay)
-                    try:
-                        bw = float(ov_page.mediabox.width)
-                        bh = float(ov_page.mediabox.height)
-                    except Exception:
-                        bw, bh = A4
-                    base = PageObject.create_blank_page(width=bw, height=bh)  # type: ignore
-                    hw = float(extra_bg_page.mediabox.width)
-                    hh = float(extra_bg_page.mediabox.height)
-                    scale = 0.3
-                    tx = (bw - hw * scale) / 2.0
-                    ty = (bh - hh * scale) / 2.0
-                    t = Transformation().scale(scale, scale).translate(tx, ty)
-                    base.merge_transformed_page(extra_bg_page, t)
-                    base.merge_page(ov_page)
-                    writer.add_page(base)
-                    continue
-                except Exception:
-                    pass
-            # Fallback: nur Overlay
+            # Kein Hintergrund gefunden - nur Overlay verwenden
             writer.add_page(ov_page)
-    out = io.BytesIO()
-    writer.write(out)
-    return out.getvalue()
+    
+    output = io.BytesIO()
+    writer.write(output)
+    return output.getvalue()
 
 
-def append_additional_pages(base_pdf: bytes, additional_pdf: Optional[bytes]) -> bytes:
-    """Hängt optional weitere Seiten hinten an."""
+def append_additional_pages(template_pdf: bytes, additional_pdf: Optional[bytes] = None) -> bytes:
+    """Hängt optional weitere Seiten an das 7-seitige Template an."""
     if not additional_pdf:
-        return base_pdf
-    base_reader = PdfReader(io.BytesIO(base_pdf))
-    add_reader = PdfReader(io.BytesIO(additional_pdf))
-    writer = PdfWriter()
-    for p in base_reader.pages:
-        writer.add_page(p)
-    for p in add_reader.pages:
-        writer.add_page(p)
-    out = io.BytesIO()
-    writer.write(out)
-    return out.getvalue()
+        return template_pdf
+    
+    try:
+        main_reader = PdfReader(io.BytesIO(template_pdf))
+        add_reader = PdfReader(io.BytesIO(additional_pdf))
+        writer = PdfWriter()
+        
+        # Hauptseiten hinzufügen
+        for page in main_reader.pages:
+            writer.add_page(page)
+        
+        # Zusätzliche Seiten hinzufügen
+        for page in add_reader.pages:
+            writer.add_page(page)
+        
+        output = io.BytesIO()
+        writer.write(output)
+        return output.getvalue()
+    except Exception:
+        return template_pdf
 
 
 def generate_custom_offer_pdf(
@@ -992,8 +987,17 @@ def generate_custom_offer_pdf(
     bg_dir: Path,
     dynamic_data: Dict[str, str],
     additional_pdf: Optional[bytes] = None,
+    template_prefix: str = "nt_nt"
 ) -> bytes:
-    """End-to-End-Erzeugung des Angebots: Overlay -> Merge -> Optional anhängen."""
+    """End-to-End-Erzeugung des Angebots: Overlay -> Merge -> Optional anhängen.
+    
+    Args:
+        coords_dir: Verzeichnis mit Koordinaten-YMLs
+        bg_dir: Verzeichnis mit Template-PDFs
+        dynamic_data: Daten für Platzhalter
+        additional_pdf: Optionale zusätzliche Seiten
+        template_prefix: Präfix für Templates ("nt_nt" für PV, "hp_nt" für Wärmepumpen)
+    """
     # Bestimme Gesamtseiten für Fußzeile (7 + ggf. Zusatzseiten)
     total_pages = 7
     if additional_pdf:
@@ -1003,5 +1007,12 @@ def generate_custom_offer_pdf(
         except Exception:
             total_pages = 7
 
+    # 1. Overlay generieren
+    overlay_bytes = generate_overlay(coords_dir, dynamic_data, total_pages)
     
-
+    # 2. Mit Hintergrund verschmelzen (mit Template-Präfix)
+    template_pdf = merge_with_background(overlay_bytes, bg_dir, template_prefix)
+    
+    # 3. Optional weitere Seiten anhängen
+    final_pdf = append_additional_pages(template_pdf, additional_pdf)
+    

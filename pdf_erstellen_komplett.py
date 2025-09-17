@@ -6,6 +6,7 @@ from pathlib import Path
 from typing import Optional, Dict, Any
 
 from pypdf import PdfReader
+from calculations import build_project_data
 
 try:
     from pdf_template_engine import build_dynamic_data, generate_custom_offer_pdf
@@ -123,7 +124,7 @@ def main(
     coords_dir = base_dir / "coords"
     bg_dir = base_dir / "pdf_templates_static" / "notext"
 
-    project_data = _read_json(project_json)
+    project_data = build_project_data(_read_json(project_json))
     analysis_results = _read_json(analysis_json)
     company_info = _read_json(company_json)
 
@@ -175,7 +176,7 @@ def render_ui() -> None:
     if use_session:
         try:
             import streamlit as st  # type: ignore
-            project_data = st.session_state.get("project_data", {})
+            project_data = build_project_data(st.session_state.get("project_data", {}))
             analysis_results = st.session_state.get("calculation_results", {})
             # Firmeninfos: wenn DB aktiv, hole aktive Firma; sonst Upload nutzen
             try:
@@ -194,7 +195,7 @@ def render_ui() -> None:
             pj = st.file_uploader("project_data.json", type=["json"])
             if pj is not None:
                 try:
-                    project_data = json.loads(pj.read().decode("utf-8"))
+                    project_data = build_project_data(json.loads(pj.read().decode("utf-8")))
                 except Exception as e:
                     st.error(f"Projekt JSON ungültig: {e}")
         with c2:

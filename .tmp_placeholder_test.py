@@ -1,10 +1,11 @@
 import sys
 sys.path.append(r"c:/123456/corba")
 from pdf_template_engine import placeholders
+from calculations import build_project_data
 
 print("OK mapping size:", len(placeholders.PLACEHOLDER_MAPPING))
 
-project_data = {
+project_data = build_project_data({
     "customer_data": {"first_name":"Max","last_name":"Mustermann"},
     "project_details": {
         "module_quantity": 10,
@@ -15,7 +16,7 @@ project_data = {
         "selected_storage_name": "EnergyCell 10kWh",
         "selected_storage_storage_power_kw": 10.0
     }
-}
+})
 analysis_results = {
     "annual_pv_production_kwh": 8250,
     "self_supply_rate_percent": 54,

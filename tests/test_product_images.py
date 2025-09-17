@@ -10,10 +10,11 @@ from pdf_template_engine.placeholders import build_dynamic_data
 from pdf_template_engine.dynamic_overlay import generate_overlay
 import tempfile
 from pathlib import Path
+from calculations import build_project_data
 
 def test_product_images():
     # Beispiel-Daten für Test - Verwende Produkte mit PNG-Bildern
-    project_data = {
+    project_data = build_project_data({
         "project_details": {
             "selected_module_name": "BetaSun 400W",           # Hat jetzt PNG-Bild
             "selected_inverter_name": "PowerMax 5K",          # Hat kein Bild (falls nicht aktualisiert)
@@ -23,7 +24,7 @@ def test_product_images():
             "customer_name": "Test Kunde",
             "projekt_name": "Test Projekt"
         }
-    }
+    })
     
     analysis_results = {
         "anlage_kwp": 8.8,

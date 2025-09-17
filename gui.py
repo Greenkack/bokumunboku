@@ -639,6 +639,25 @@ def main():
             if multi_offer_module and callable(getattr(multi_offer_module, 'render_multi_offer_generator', None)):
                 project_data_doc = st.session_state.get('project_data', {})
                 calc_results_doc = st.session_state.get("calculation_results", {})
+                
+                # Wärmepumpen-Daten hinzufügen wenn vorhanden
+                if 'heatpump_data' in st.session_state:
+                    if not isinstance(project_data_doc, dict):
+                        project_data_doc = {}
+                    project_data_doc['heatpump_data'] = st.session_state.heatpump_data
+                    project_data_doc['heatpump_offer'] = True  # Flag für Template-Auswahl
+                
+                if 'building_data' in st.session_state:
+                    if not isinstance(project_data_doc, dict):
+                        project_data_doc = {}
+                    project_data_doc['building_data'] = st.session_state.building_data
+                
+                # Economics-Daten hinzufügen wenn vorhanden
+                if 'economics_data' in st.session_state:
+                    if not isinstance(project_data_doc, dict):
+                        project_data_doc = {}
+                    project_data_doc['economics_data'] = st.session_state.economics_data
+                
                 multi_offer_module.render_multi_offer_generator(TEXTS, project_data_doc, calc_results_doc)
 
                 # Aufruf der neuen Produktauswahl-Logik

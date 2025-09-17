@@ -1,6 +1,7 @@
 from pdf_template_engine.placeholders import build_dynamic_data
+from calculations import build_project_data
 
-project_data = {
+project_data = build_project_data({
     'customer_data': {'first_name': 'A', 'last_name': 'B'},
     'project_details': {
         'module_quantity': 20,
@@ -9,7 +10,7 @@ project_data = {
         'selected_storage_name': 'ECS4100 -H3 12,09 kWh Stromspeicher',
         'include_storage': True,
     },
-}
+})
 
 res = build_dynamic_data(project_data, analysis_results={})
 

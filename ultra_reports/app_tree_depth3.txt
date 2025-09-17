@@ -1,0 +1,896 @@
+📁 .git
+  📄 COMMIT_EDITMSG
+  📄 config
+  📄 description
+  📄 FETCH_HEAD
+  📄 HEAD
+  📁 hooks
+    📄 applypatch-msg.sample
+    📄 commit-msg.sample
+    📄 fsmonitor-watchman.sample
+    📄 post-checkout
+    📄 post-commit
+    📄 post-merge
+    📄 post-update.sample
+    📄 pre-applypatch.sample
+    📄 pre-commit.sample
+    📄 pre-merge-commit.sample
+    📄 pre-push
+    📄 pre-push.sample
+    📄 pre-rebase.sample
+    📄 pre-receive.sample
+    📄 prepare-commit-msg.sample
+    📄 push-to-checkout.sample
+    📄 sendemail-validate.sample
+    📄 update.sample
+  📄 index
+  📁 info
+    📄 exclude
+  📁 lfs
+    📁 cache
+    📁 objects
+    📁 tmp
+  📁 logs
+    📄 HEAD
+    📁 refs
+  📁 objects
+    📁 00
+    📁 01
+    📁 02
+    📁 03
+    📁 04
+    📁 05
+    📁 06
+    📁 07
+    📁 08
+    📁 09
+    📁 0a
+    📁 0b
+    📁 0c
+    📁 0d
+    📁 0e
+    📁 0f
+    📁 10
+    📁 11
+    📁 12
+    📁 13
+    📁 14
+    📁 15
+    📁 16
+    📁 17
+    📁 18
+    📁 19
+    📁 1a
+    📁 1b
+    📁 1c
+    📁 1d
+    📁 1e
+    📁 1f
+    📁 20
+    📁 22
+    📁 23
+    📁 25
+    📁 26
+    📁 28
+    📁 29
+    📁 2a
+    📁 2b
+    📁 2c
+    📁 2d
+    📁 2e
+    📁 2f
+    📁 30
+    📁 31
+    📁 32
+    📁 34
+    📁 35
+    📁 36
+    📁 37
+    📁 39
+    📁 3a
+    📁 3b
+    📁 3c
+    📁 3e
+    📁 3f
+    📁 40
+    📁 41
+    📁 42
+    📁 44
+    📁 45
+    📁 46
+    📁 47
+    📁 48
+    📁 49
+    📁 4a
+    📁 4b
+    📁 4c
+    📁 4d
+    📁 4e
+    📁 4f
+    📁 50
+    📁 51
+    📁 52
+    📁 53
+    📁 54
+    📁 55
+    📁 56
+    📁 57
+    📁 58
+    📁 59
+    📁 5a
+    📁 5b
+    📁 5c
+    📁 5d
+    📁 5e
+    📁 5f
+    📁 60
+    📁 61
+    📁 62
+    📁 63
+    📁 64
+    📁 65
+    📁 66
+    📁 67
+    📁 68
+    📁 69
+    📁 6a
+    📁 6b
+    📁 6c
+    📁 6d
+    📁 6e
+    📁 6f
+    📁 70
+    📁 71
+    📁 72
+    📁 74
+    📁 75
+    📁 76
+    📁 78
+    📁 79
+    📁 7b
+    📁 7c
+    📁 7d
+    📁 7e
+    📁 7f
+    📁 80
+    📁 81
+    📁 82
+    📁 83
+    📁 84
+    📁 85
+    📁 86
+    📁 87
+    📁 88
+    📁 89
+    📁 8a
+    📁 8b
+    📁 8c
+    📁 8e
+    📁 8f
+    📁 91
+    📁 92
+    📁 93
+    📁 94
+    📁 95
+    📁 96
+    📁 97
+    📁 98
+    📁 99
+    📁 9a
+    📁 9b
+    📁 9c
+    📁 9d
+    📁 9e
+    📁 9f
+    📁 a0
+    📁 a1
+    📁 a2
+    📁 a3
+    📁 a5
+    📁 a6
+    📁 a7
+    📁 a8
+    📁 a9
+    📁 aa
+    📁 ab
+    📁 ac
+    📁 ad
+    📁 ae
+    📁 af
+    📁 b2
+    📁 b3
+    📁 b4
+    📁 b5
+    📁 b6
+    📁 b7
+    📁 b8
+    📁 b9
+    📁 ba
+    📁 bb
+    📁 bc
+    📁 bd
+    📁 be
+    📁 bf
+    📁 c0
+    📁 c1
+    📁 c2
+    📁 c3
+    📁 c4
+    📁 c5
+    📁 c6
+    📁 c8
+    📁 c9
+    📁 ca
+    📁 cb
+    📁 cc
+    📁 cd
+    📁 ce
+    📁 cf
+    📁 d0
+    📁 d1
+    📁 d3
+    📁 d4
+    📁 d5
+    📁 d6
+    📁 d7
+    📁 d8
+    📁 d9
+    📁 da
+    📁 db
+    📁 dd
+    📁 de
+    📁 df
+    📁 e1
+    📁 e2
+    📁 e3
+    📁 e4
+    📁 e5
+    📁 e6
+    📁 e7
+    📁 e8
+    📁 e9
+    📁 ea
+    📁 eb
+    📁 ec
+    📁 ed
+    📁 ef
+    📁 f0
+    📁 f1
+    📁 f2
+    📁 f3
+    📁 f4
+    📁 f5
+    📁 f6
+    📁 f7
+    📁 f8
+    📁 f9
+    📁 fa
+    📁 fb
+    📁 fc
+    📁 fd
+    📁 fe
+    📁 ff
+    📁 info
+    📁 pack
+  📄 ORIG_HEAD
+  📄 packed-refs
+  📁 refs
+    📁 heads
+    📁 remotes
+    📁 tags
+📄 .gitattributes
+📁 .github
+  📄 CONTRIBUTING.md
+  📄 copilot-instructions.md
+  📄 dependabot.yml
+  📁 instructions
+    📄 calculations.instructions.md
+    📄 crm-db.instructions.md
+    📄 docs.instructions.md
+    📄 pdf-engine.instructions.md
+    📄 python.instructions.md
+    📄 security.instructions.md
+    📄 streamlit-ui.instructions.md
+    📄 tests.instructions.md
+    📄 tools.instructions.md
+  📁 ISSUE_TEMPLATE
+    📄 bug_report.md
+    📄 config.yml
+    📄 feature_request.md
+  📄 labels.yml
+  📁 modes
+    📄 mode-agent.prompt.md
+    📄 mode-ask.prompt.md
+    📄 mode-edit.prompt.md
+    📄 mode-router.prompt.md
+  📁 prompts
+    📄 align-to-project-keys.prompt.md
+    📄 extract-calculation-keys.prompt.md
+    📄 fix-bug.prompt.md
+    📄 implement-feature.prompt.md
+    📄 multi-offer-fallback.prompt.md
+    📄 pdf-final-page.prompt.md
+    📄 refactor-code.prompt.md
+    📄 session-persistence.prompt.md
+    📄 wp-crm-save.prompt.md
+    📄 write-tests.prompt.md
+  📄 PULL_REQUEST_TEMPLATE.md
+  📄 SECURITY.md
+  📁 toolsets
+    📄 toolset-db.prompt.md
+    📄 toolset-diagnostics.prompt.md
+    📄 toolset-pdf.md
+    📄 toolset-pdf.prompt.md
+    📄 toolset-tests.prompt.md
+    📄 toolset-ui.prompt.md
+  📁 workflows
+    📄 ci.yml
+    📄 codeql.yml
+    📄 electron-release.yml
+📄 .gitignore
+📁 .pytest_cache
+  📄 .gitignore
+  📄 CACHEDIR.TAG
+  📄 README.md
+  📁 v
+    📁 cache
+📁 .streamlit
+  📄 config.toml
+📄 .tmp_placeholder_test.py
+📁 __pycache__
+  📄 admin_logo_management_ui.cpython-312.pyc
+  📄 admin_logo_positions_ui.cpython-312.pyc
+  📄 admin_panel.cpython-312.pyc
+  📄 admin_panel.cpython-313.pyc
+  📄 ai_companion.cpython-312.pyc
+  📄 ai_companion.cpython-313.pyc
+  📄 analysis.cpython-312.pyc
+  📄 analysis.cpython-313.pyc
+  📄 app_status.cpython-312.pyc
+  📄 app_status.cpython-313.pyc
+  📄 brand_logo_db.cpython-312.pyc
+  📄 brand_logo_db.cpython-313.pyc
+  📄 calculations.cpython-312.pyc
+  📄 calculations.cpython-313.pyc
+  📄 calculations_extended.cpython-312.pyc
+  📄 calculations_extended.cpython-313.pyc
+  📄 calculations_heatpump.cpython-312.pyc
+  📄 calculations_heatpump.cpython-313.pyc
+  📄 crm.cpython-312.pyc
+  📄 crm.cpython-313.pyc
+  📄 crm_calendar_ui.cpython-312.pyc
+  📄 crm_calendar_ui.cpython-313.pyc
+  📄 crm_dashboard_ui.cpython-312.pyc
+  📄 crm_dashboard_ui.cpython-313.pyc
+  📄 crm_pipeline_ui.cpython-312.pyc
+  📄 crm_pipeline_ui.cpython-313.pyc
+  📄 data_input.cpython-312.pyc
+  📄 data_input.cpython-313.pyc
+  📄 database.cpython-312.pyc
+  📄 database.cpython-313.pyc
+  📄 doc_output.cpython-312.pyc
+  📄 doc_output.cpython-313.pyc
+  📄 financial_tools.cpython-312.pyc
+  📄 financial_tools.cpython-313.pyc
+  📄 german_formatting.cpython-312.pyc
+  📄 gui.cpython-312.pyc
+  📄 heatpump_pricing.cpython-312.pyc
+  📄 heatpump_pricing.cpython-313.pyc
+  📄 heatpump_ui.cpython-312.pyc
+  📄 heatpump_ui.cpython-313.pyc
+  📄 info_platform.cpython-312.pyc
+  📄 info_platform.cpython-313.pyc
+  📄 live_preview_helpers.cpython-312.pyc
+  📄 locales.cpython-312.pyc
+  📄 locales.cpython-313.pyc
+  📄 multi_offer_generator.cpython-312.pyc
+  📄 multi_offer_generator.cpython-313.pyc
+  📄 multi_offer_generator_new.cpython-312.pyc
+  📄 options.cpython-312.pyc
+  📄 options.cpython-313.pyc
+  📄 pdf_erstellen_komplett.cpython-312.pyc
+  📄 pdf_generator.cpython-312.pyc
+  📄 pdf_generator.cpython-313.pyc
+  📄 pdf_logo_integration.cpython-312.pyc
+  📄 pdf_preview.cpython-312.pyc
+  📄 pdf_preview.cpython-313.pyc
+  📄 pdf_ui.cpython-312.pyc
+  📄 pdf_ui.cpython-313.pyc
+  📄 pdf_widgets.cpython-312.pyc
+  📄 pdf_widgets.cpython-313.pyc
+  📄 product_attributes.cpython-312.pyc
+  📄 product_attributes.cpython-313.pyc
+  📄 product_db.cpython-312.pyc
+  📄 product_db.cpython-313.pyc
+  📄 pv_visuals.cpython-312.pyc
+  📄 pv_visuals.cpython-313.pyc
+  📄 quick_calc.cpython-312.pyc
+  📄 quick_calc.cpython-313.pyc
+  📄 solar_calculator.cpython-312.pyc
+  📄 solar_calculator.cpython-313.pyc
+📄 add_test_product_images.py
+📄 admin_logo_management_ui.py
+📄 admin_logo_positions_ui.py
+📄 admin_module_alias_mapping_ui.py
+📄 admin_panel.py
+📄 admin_product_attributes_ui.py
+📄 ai_companion.py
+📄 analysis.py
+📄 analysis_utils.py
+📄 Angebot.pdf
+📄 app_status.py
+📄 Berechnungsfunktionen im Projekt.pdf
+📄 brand_logo_db.py
+📄 calculations.py
+📄 calculations.py.bak
+📄 calculations_extended.py
+📄 calculations_heatpump.py
+📄 central_pdf_system.py
+📄 check_companies.py
+📄 check_db.py
+📄 check_product_image_details.py
+📄 check_product_images.py
+📄 clean_unicode_emojis.py
+📁 components
+  📄 __init__.py
+  📁 __pycache__
+    📄 __init__.cpython-312.pyc
+    📄 __init__.cpython-313.pyc
+    📄 progress_manager.cpython-312.pyc
+    📄 progress_manager.cpython-313.pyc
+    📄 progress_settings.cpython-312.pyc
+    📄 progress_settings.cpython-313.pyc
+  📄 progress_demo.py
+  📄 progress_manager.py
+  📄 progress_settings.py
+📁 coords
+  📄 seite1.yml
+  📄 seite2.yml
+  📄 seite3.yml
+  📄 seite4.yml
+  📄 seite5.yml
+  📄 seite6.yml
+  📄 seite7.yml
+📁 coords_wp
+  📄 wp_seite1.yml
+  📄 wp_seite2.yml
+  📄 wp_seite3.yml
+  📄 wp_seite4.yml
+  📄 wp_seite5.yml
+  📄 wp_seite6.yml
+  📄 wp_seite7.yml
+📄 create_png_test_images.py
+📄 crm.py
+📄 crm_calendar_ui.py
+📄 crm_dashboard_ui.py
+📄 crm_database.db
+📄 crm_pipeline_ui.py
+📁 data
+  📄 app_data.db
+  📁 brand_logos
+  📁 company_docs
+    📁 1
+    📁 2
+    📁 3
+    📁 4
+    📁 5
+    📁 6
+  📁 customer_docs
+    📁 customer_14
+  📁 imports
+    📁 mixed
+    📁 module_pdfs
+  📄 Kakerlack.ico
+  📄 Mappe2.xlsx
+  📄 MeineProdukte.xlsx
+  📄 price_matrix.csv
+  📄 price_matrix.xlsx
+  📄 price_matrix_test.xlsx
+  📁 product_datasheets
+    📁 11
+    📁 1144
+    📁 1145
+    📁 1146
+    📁 1147
+    📁 1148
+    📁 1149
+    📁 12
+    📁 120
+    📁 121
+    📁 122
+    📁 123
+    📁 125
+    📁 126
+    📁 1263
+    📁 1272
+    📁 1272.0
+    📁 129
+    📁 13
+    📁 130
+    📁 131
+    📁 132
+    📁 133
+    📁 134
+    📁 135
+    📁 136
+    📁 138
+    📁 14
+    📁 145
+    📁 146
+    📁 147
+    📁 148
+    📁 15
+    📁 150
+    📁 151
+    📁 152
+    📁 153
+    📁 154
+    📁 157
+    📁 158
+    📁 159
+    📁 16
+    📁 160
+    📁 161
+    📁 162
+    📁 163
+    📁 164
+    📁 166
+    📁 167
+    📁 17
+    📁 18
+    📁 19
+    📁 20
+    📁 21
+    📁 22
+    📁 26
+    📁 27
+    📁 31
+    📁 32
+    📁 38
+    📁 39
+    📁 40
+    📁 41
+    📁 42
+    📁 43
+    📁 44
+    📁 45
+    📁 46
+    📁 47
+    📁 48
+    📁 49
+    📁 50
+    📁 51
+    📁 52
+    📁 53
+    📁 54
+    📁 55
+    📁 56
+    📁 57
+    📁 58
+    📁 59
+    📁 6
+    📁 60
+    📁 61
+    📁 62
+    📁 7
+    📁 70
+    📁 71
+    📁 72
+    📁 73
+    📁 74
+    📁 75
+    📁 76
+    📁 77
+    📁 78
+    📁 79
+    📁 80
+    📁 81
+    📁 82
+    📁 86
+    📁 87
+    📁 88
+    📁 89
+    📁 90
+    📁 91
+    📁 92
+    📁 93
+    📁 94
+    📁 95
+    📁 96
+    📁 97
+    📁 98
+📄 data_input.py
+📄 database.py
+📄 de.json
+📄 debug_brand_extraction.py
+📄 debug_logo_pdf.py
+📄 debug_logo_rendering.py
+📄 debug_page3_check.py
+📁 dev_tools
+  📄 kakerlake_ultra_cleaner.py
+  📁 ultra_reports
+    📄 autopatch_annual_savings_report.csv
+    📄 autopatch_project_data_report.csv
+    📄 python_function_body_duplicates.csv
+    📄 python_function_name_conflicts.csv
+    📄 python_lhs_conflicts.csv
+    📄 python_lhs_same_shape_diff_vars.csv
+    📄 python_parse_errors.csv
+    📄 python_rhs_same_expr_diff_lhs.csv
+    📄 top30_conflicting_lhs.csv
+📄 doc_output.py
+📄 docker-compose.yml
+📁 docs
+  📄 Admin_Individualisierung_Roadmap.md
+  📄 admin_panel_logic_extraction.md
+  📄 analysis_logic_extraction.md
+  📄 calculations_extended_logic_extraction.md
+  📄 calculations_heatpump_logic_extraction.md
+  📄 calculations_logic_extraction.md
+  📄 contracts_reference.md
+  📄 crm_calendar_ui_logic_extraction.md
+  📄 crm_dashboard_ui_logic_extraction.md
+  📄 crm_logic_extraction.md
+  📄 crm_pipeline_ui_logic_extraction.md
+  📄 data_input_logic_extraction.md
+  📄 database_logic_extraction.md
+  📄 doc_output_logic_extraction.md
+  📄 dynamic_overlay_logic_extraction.md
+  📄 financial_tools_logic_extraction.md
+  📄 gui_logic_extraction.md
+  📄 options_logic_extraction.md
+  📄 pdf_generator_logic_extraction.md
+  📄 pdf_helpers_logic_extraction.md
+  📄 pdf_preview_logic_extraction.md
+  📄 pdf_styles_logic_extraction.md
+  📄 pdf_ui_logic_extraction.md
+  📄 pdf_widgets_logic_extraction.md
+  📄 placeholders_logic_extraction.md
+  📄 product_db_logic_extraction.md
+  📄 PV_Module_Upload_BEHOBEN.md
+  📄 pv_visuals_logic_extraction.md
+  📄 solar_calculator_logic_extraction.md
+  📄 utils_logic_extraction.md
+  📄 XLSX_Upload_Anleitung.md
+📄 excel_eval.py
+📄 financial_tools.py
+📄 german_formatting.py
+📄 gui.py
+📄 heatpump_pricing.py
+📄 heatpump_ui.py
+📄 info_platform.py
+📄 init_database.py
+📄 kakerlake_ultra_cleaner.py
+📄 live_calculation_engine.py
+📄 live_preview_helpers.py
+📄 locales.py
+📄 LOGO_INTEGRATION_DOKUMENTATION.md
+📄 map_integration.py
+📄 Menü Struktur.md
+📄 migrate_logo_database.py
+📄 MIGRATION_STRATEGY.md
+📁 mnt
+  📁 data
+    📄 kakerlake_ultra_cleaner.py
+📄 multi_offer_generator.py
+📄 multi_offer_generator_new.py
+📄 multi_offer_generator_old.py
+📄 MULTI_PDF_WAERMEPUMPEN_DOKU.md
+📁 notwendig oder nicht
+  📄 AppContext.tsx
+  📄 calculation.ts
+  📄 calculations_cli.py
+  📄 cells_manifest.csv
+  📄 ChartContainer.tsx
+  📄 custom_dynamic_calculation.py
+  📄 excel_audit_report_fast.xlsx
+  📄 excel_charts_pivots_summary.xlsx
+  📄 excel_formula_inventory.csv
+  📄 excel_function_frequency.csv
+  📄 excel_functions_used.csv
+  📄 excel_range_reader.py
+  📄 file_manifest.csv
+  📄 file_manifest.json
+  📄 file_manifest_neu.csv
+  📄 file_manifest_neu.json
+  📄 file_tree.txt
+  📁 keine ahnung
+    📄 AppContext.tsx
+    📄 calculation.ts
+    📄 calculations_cli.py
+    📄 ChartContainer.tsx
+    📁 enhancements
+    📄 LivePricingSidebar.tsx
+    📄 ResultsDisplay.tsx
+  📄 LivePricingSidebar.tsx
+  📁 need or not
+    📄 AppContext.tsx
+    📄 calculation.ts
+    📄 calculations_cli.py
+    📄 ChartContainer.tsx
+    📄 LivePricingSidebar.tsx
+    📄 ResultsDisplay.tsx
+  📄 python_function_recipes.py
+  📄 ResultsDisplay.tsx
+  📄 solarkreisel.json
+  📁 wichtig
+    📄 out_porting_json.zip
+    📁 out_selected
+    📄 out_selected_20250829_113033.zip
+    📁 portings
+    📄 repo befehl 3.txt
+    📄 repo befehl.txt
+    📄 repo befehl2.txt
+    📄 repo1_dump.json.gz
+    📄 repo2_dump.json.gz
+    📄 repo_porter.py
+    📄 repo_porter_select.py
+    📄 repo_to_json.py
+  📁 zu implementieren
+    📄 kalkulationen.py
+📄 options.py
+📄 pdf_atomizer.py
+📄 pdf_erstellen_komplett.py
+📄 pdf_generator.py
+📄 pdf_helpers.py
+📄 pdf_migration.py
+📄 pdf_preview.py
+📄 pdf_styles.py
+📁 pdf_template_engine
+  📄 __init__.py
+  📁 __pycache__
+    📄 __init__.cpython-312.pyc
+    📄 __init__.cpython-313.pyc
+    📄 dynamic_overlay.cpython-312.pyc
+    📄 dynamic_overlay.cpython-313.pyc
+    📄 placeholders.cpython-312.pyc
+    📄 placeholders.cpython-313.pyc
+    📄 prepare_backgrounds.cpython-312.pyc
+  📄 dynamic_overlay.py
+  📄 merger.py
+  📄 overlay.py
+  📄 placeholders.py
+  📄 prepare_backgrounds.py
+📁 pdf_templates_static
+  📁 notext
+    📄 hp_nt_01.pdf
+    📄 hp_nt_02.pdf
+    📄 hp_nt_03.pdf
+    📄 hp_nt_04.pdf
+    📄 hp_nt_05.pdf
+    📄 hp_nt_06.pdf
+    📄 hp_nt_07.pdf
+    📄 hp_nt_08.pdf
+    📄 hp_nt_09.pdf
+    📄 hp_nt_10.pdf
+    📄 hp_nt_11.pdf
+    📄 hp_nt_12.pdf
+    📄 hp_nt_13.pdf
+    📄 hp_nt_14.pdf
+    📄 hp_nt_15.pdf
+    📄 hp_nt_16.pdf
+    📄 nt_nt_01.pdf
+    📄 nt_nt_02.pdf
+    📄 nt_nt_03.pdf
+    📄 nt_nt_04.pdf
+    📄 nt_nt_05.pdf
+    📄 nt_nt_06.pdf
+    📄 nt_nt_07.pdf
+📄 pdf_ui.py
+📄 pdf_widgets.py
+📄 pdf_zu_markdown.py
+📄 product_attributes.py
+📄 product_db.py
+📄 PROGRESS.md
+📄 PROGRESS_MANAGER_GUIDE.md
+📄 pv_visuals.py
+📄 quick_calc.py
+📄 README.md
+📄 requirements.txt
+📄 scenario_manager.py
+📄 simple_logo_test.py
+📄 solar_calculator.py
+📄 teilen.py
+📁 tests
+  📄 test_admin_fix.py
+  📄 test_admin_upload.py
+  📄 test_admin_workflow.py
+  📄 test_brand_logos.py
+  📄 test_build_dynamic_data.py
+  📄 test_final_pdf_logos.py
+  📄 test_hp_functions.py
+  📄 test_logo_integration.py
+  📄 test_main6_render.py
+  📄 test_main_pdf.py
+  📄 test_numbering.py
+  📄 test_overlay_footer.py
+  📄 test_page1_alignment.py
+  📄 test_page3_values.py
+  📄 test_page4_images.py
+  📄 test_pdf_logos.py
+  📄 test_product_images.py
+  📄 test_right_alignment.py
+  📄 test_roof_data.py
+  📄 test_section_titles_logos.py
+  📄 test_template_engine_import.py
+  📄 test_wirtschaftlichkeit.py
+📁 theming
+  📄 __init__.py
+  📁 __pycache__
+    📄 __init__.cpython-312.pyc
+    📄 __init__.cpython-313.pyc
+    📄 pdf_styles.cpython-312.pyc
+    📄 pdf_styles.cpython-313.pyc
+  📄 pdf_styles.py
+📁 tools
+  📁 .pytest_cache
+    📄 .gitignore
+    📄 CACHEDIR.TAG
+    📄 README.md
+    📁 v
+  📁 __pycache__
+    📄 import_module_attributes_from_pdf.cpython-312.pyc
+    📄 import_module_attributes_generic.cpython-312.pyc
+    📄 smoke_crm_save.cpython-312.pyc
+    📄 test_main_pdf.cpython-312.pyc
+    📄 test_page3_values.cpython-312-pytest-8.4.1.pyc
+  📄 build_installer.ps1
+  📄 count_pages.py
+  📄 custom_dynamic_calculation.py
+  📄 debug_dynamic_page3.py
+  📄 debug_page3_check.py
+  📄 import_module_attributes_from_pdf.py
+  📄 import_module_attributes_generic.py
+  📄 installer_template.iss
+  📄 kakerlake_ultra_cleaner.py
+  📄 out_porting_json.zip
+  📁 out_selected
+    📁 patches
+    📄 placement_instructions.csv
+  📄 out_selected_20250829_113033.zip
+  📁 portings
+    📄 index_dst.csv
+    📄 index_src.csv
+    📁 patches
+    📄 placement_instructions.csv
+    📄 report.json
+  📄 pv_berechnungen_50.pdf
+  📄 pv_berechnungen_50.py
+  📄 repo befehl 3.txt
+  📄 repo befehl2.txt
+  📄 repo1_dump.json.gz
+  📄 repo2_dump.json.gz
+  📄 repo_porter.py
+  📄 repo_porter_select.py
+  📄 repo_to_json.py
+  📄 run_app.cmd
+  📄 schema_extractor.py
+  📄 smoke_crm_save.py
+  📄 test_build_dynamic_data.py
+  📄 test_main6_render.py
+  📄 test_main_pdf.py
+  📄 test_numbering.py
+  📄 test_overlay_footer.py
+  📄 test_page3_values.py
+  📄 test_page4_images.py
+  📄 types_and_sql_from_schema.mjs
+  📄 xlsx_validator.py
+📁 ultra_reports
+  📄 app_structure_manifest.csv
+  📄 autopatch_annual_savings_report.csv
+  📄 autopatch_project_data_report.csv
+  📄 python_function_body_duplicates.csv
+  📄 python_function_name_conflicts.csv
+  📄 python_lhs_conflicts.csv
+  📄 python_lhs_same_shape_diff_vars.csv
+  📄 python_parse_errors.csv
+  📄 python_rhs_same_expr_diff_lhs.csv
+  📄 top30_conflicting_lhs.csv
+📄 Umfangreiche Code-Analyse und Umsetzung als PrimeReact_Electron-App.pdf
+📄 update_tariffs.py
+📁 utils
+  📄 coords_raw.yaml
+  📄 export_coords.py
+  📄 remove_text.py
+📄 utils.py
+📄 Übersicht der App-Struktur.pdf

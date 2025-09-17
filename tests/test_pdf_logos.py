@@ -9,6 +9,7 @@ sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 
 from pdf_generator import generate_offer_pdf
 import tempfile
+from calculations import build_project_data
 
 def test_pdf_with_logos():
     """Teste PDF-Generierung mit Logos"""
@@ -16,7 +17,7 @@ def test_pdf_with_logos():
     print("=" * 50)
     
     # Test-Daten mit bekannten Logo-Herstellern
-    project_data = {
+    project_data = build_project_data({
         "customer_data": {
             "first_name": "Max",
             "last_name": "Mustermann",
@@ -46,7 +47,7 @@ def test_pdf_with_logos():
                 "product_name": "Battery-Box Premium HVM"
             }
         }
-    }
+    })
     
     analysis_results = {
         "total_investment_netto": 15000,

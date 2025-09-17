@@ -15,6 +15,82 @@ from datetime import datetime
 import traceback
 import requests  # Für HTTP-Anfragen an PVGIS
 
+def build_project_data(*parts, drop_none=True, drop_empty_str=True, normalize=True, keymap=None):
+    out = {}
+    def _coerce(x):
+        try:
+            if x is None: return {}
+            if isinstance(x, dict): return x
+            if hasattr(x, 'items'): return dict(x.items())
+            return dict(x)
+        except Exception:
+            return {}
+    for part in parts:
+        d = _coerce(part)
+        for k, v in d.items():
+            if drop_none and v is None: continue
+            if drop_empty_str and isinstance(v, str) and v.strip()== "": continue
+            kk = k
+            try:
+                if isinstance(kk, str):
+                    kk = kk.strip().replace("\\u200b","").replace("\\n"," ").strip()
+                if keymap and kk in keymap: kk = keymap[kk]
+            except Exception: pass
+            out[kk] = v
+    return out
+def compute_annual_savings(
+    *,
+    results: Optional[Dict[str, Any]] = None,
+    annual_feedin_revenue: Optional[float] = None,
+    annual_electricity_savings: Optional[float] = None,
+    annual_old_cost: Optional[float] = None,
+    annual_hp_cost: Optional[float] = None,
+    electricity_costs_without_pv: Optional[float] = None,
+    electricity_costs_with_pv: Optional[float] = None,
+    annual_feed_in_revenue: Optional[float] = None,
+    default: float = 0.0,
+) -> float:
+    try:
+        if results:
+            for key in (
+                'annual_total_savings_euro',
+                'annual_financial_benefit_year1',
+                'annual_savings_consumption_eur',
+                'jahresersparnis_gesamt',
+                'total_annual_savings',
+                'annual_savings',
+                'annual_savings_total_euro',
+            ):
+                if isinstance(results, dict) and key in results:
+                    val = results.get(key, None)
+                    try:
+                        if val is not None and float(val) != 0.0:
+                            return float(val)
+                    except Exception:
+                        pass
+            try:
+                feed_in_revenue = results.get('annual_revenue_feed_in_eur', 0.0)
+                consumption_savings = results.get('annual_savings_consumption_eur', 0.0)
+                if (float(feed_in_revenue) > 0.0) or (float(consumption_savings) > 0.0):
+                    return float(feed_in_revenue) + float(consumption_savings)
+            except Exception:
+                pass
+        if annual_feedin_revenue is not None and annual_electricity_savings is not None:
+            return float(annual_feedin_revenue) + float(annual_electricity_savings)
+        if annual_old_cost is not None and annual_hp_cost is not None:
+            return float(annual_old_cost) - float(annual_hp_cost)
+        if electricity_costs_without_pv is not None and electricity_costs_with_pv is not None:
+            base = float(electricity_costs_without_pv) - float(electricity_costs_with_pv)
+            if annual_feed_in_revenue is not None:
+                base += float(annual_feed_in_revenue)
+            return base
+        return float(default)
+    except Exception:
+        try:
+            return float(default)
+        except Exception:
+            return 0.0
+
 # Streamlit Import für UI-Funktionen
 try:
     import streamlit as st
@@ -4210,13 +4286,13 @@ def calculate_offer_details(
     try:
         # Fallback-Projektdaten wenn nicht übergeben
         if not project_data:
-            project_data = {
+            project_data = build_project_data({
                 "anlage_kwp": 10.0,
                 "electricity_price_eur_per_kwh": 0.30,
                 "annual_consumption_kwh": 4000,
                 "storage_kwh": 10.0,
                 "location": {"latitude": 50.0, "longitude": 10.0},
-            }
+            })
 
         # Basis-Berechnungen durchführen
         calculation_errors = []

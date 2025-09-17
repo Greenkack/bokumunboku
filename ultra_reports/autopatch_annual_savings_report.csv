@@ -1,0 +1,25 @@
+file,lineno,before,after,reason
+.\analysis.py,?,"results.get('annual_total_savings_euro', 0.0)","compute_annual_savings(results=results, default=0.0)",results_get_to_compute
+.\analysis.py,?,annual_feedin_revenue + annual_electricity_savings,"compute_annual_savings(annual_feedin_revenue=annual_feedin_revenue, annual_electricity_savings=annual_electricity_savings, default=0.0)",feedin_plus_consumption
+.\analysis.py,?,feed_in_revenue + consumption_savings,"compute_annual_savings(annual_feedin_revenue=feed_in_revenue, annual_electricity_savings=consumption_savings, default=0.0)",feedin_plus_consumption
+.\analysis.py,1,(kein Import),from calculations import compute_annual_savings,missing_import_added
+.\calculations_extended.py,?,"offer_data.get(""annual_savings"", 0)","compute_annual_savings(results=offer_data, default=0)",results_get_to_compute
+.\calculations_extended.py,1,(kein Import),from calculations import compute_annual_savings,missing_import_added
+.\central_pdf_system.py,?,"analysis_results.get('annual_savings', 'N/A')","compute_annual_savings(results=analysis_results, default='N/A')",results_get_to_compute
+.\central_pdf_system.py,1,(kein Import),from calculations import compute_annual_savings,missing_import_added
+.\heatpump_ui.py,?,annual_old_cost - annual_hp_cost,"compute_annual_savings(annual_old_cost=annual_old_cost, annual_hp_cost=annual_hp_cost, default=0.0)",old_minus_hp
+.\heatpump_ui.py,?,annual_old_cost - annual_hp_cost,"compute_annual_savings(annual_old_cost=annual_old_cost, annual_hp_cost=annual_hp_cost, default=0.0)",old_minus_hp
+.\heatpump_ui.py,?,"integration_data.get('total_annual_savings', annual_savings)","compute_annual_savings(results=integration_data, default=annual_savings)",results_get_to_compute
+.\heatpump_ui.py,1,(kein Import),from calculations import compute_annual_savings,missing_import_added
+.\live_preview_helpers.py,?,"results_for_display.get('annual_savings_total_euro', 0.0)","compute_annual_savings(results=results_for_display, default=0.0)",results_get_to_compute
+.\live_preview_helpers.py,?,electricity_costs_without_pv - electricity_costs_with_pv + annual_feed_in_revenue,"compute_annual_savings(electricity_costs_without_pv=electricity_costs_without_pv, electricity_costs_with_pv=electricity_costs_with_pv, annual_feed_in_revenue=annual_feed_in_revenue, default=0.0)",diff_plus_feedin
+.\live_preview_helpers.py,1,(kein Import),from calculations import compute_annual_savings,missing_import_added
+.\multi_offer_generator_old.py,?,"results.get('annual_financial_benefit_year1', 'N/A')","compute_annual_savings(results=results, default='N/A')",results_get_to_compute
+.\multi_offer_generator_old.py,1,(kein Import),from calculations import compute_annual_savings,missing_import_added
+.\notwendig oder nicht\zu implementieren\kalkulationen.py,?,,,"PARSE_ERROR:Syntax Error @ 1:1.
+tokenizer error: '`' is not a valid character in this position"
+.\tools\import_module_attributes_from_pdf.py,?,,,"PARSE_ERROR:Syntax Error @ 1:1.
+tokenizer error: no matching outer block for dedent
+
+# tools/import_module_attributes_from_pdf.py
+^"

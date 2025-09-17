@@ -8,6 +8,8 @@ Alle notwendigen Funktionen für die Live-Vorschau der Berechnungen
 import streamlit as st
 from typing import Dict, Any, Optional
 import math
+from calculations import compute_annual_savings
+from calculations import build_project_data
 
 def _get_pricing_modifications_from_session() -> Dict[str, Any]:
     """Holt Preismodifikationen aus der Session"""
@@ -149,11 +151,11 @@ def render_live_cost_preview(results_for_display: Dict[str, Any] = None):
                     anlage_kwp = annual_production_kwh / 1000.0  # Grobe Schätzung: 1000 kWh/kWp
             
             # Amortisationszeit berechnen
-            annual_savings = results_for_display.get('annual_savings_total_euro', 0.0)
+            annual_savings = compute_annual_savings(results=results_for_display, default=0.0)
             if annual_savings <= 0:
                 electricity_costs_without_pv = _calculate_electricity_costs_projection(results_for_display, 1, 0.0)
                 electricity_costs_with_pv = _calculate_electricity_costs_with_pv_projection(results_for_display, 1, 0.0)
-                annual_savings = electricity_costs_without_pv - electricity_costs_with_pv + annual_feed_in_revenue
+                annual_savings = compute_annual_savings(electricity_costs_without_pv=electricity_costs_without_pv, electricity_costs_with_pv=electricity_costs_with_pv, annual_feed_in_revenue=annual_feed_in_revenue, default=0.0)
             
             amortization_years = _calculate_amortization_time(final_price_preview, annual_savings)
             
@@ -194,7 +196,7 @@ def render_live_cost_preview(results_for_display: Dict[str, Any] = None):
             
             # Zweite Priorität: selected_storage_storage_power_kw aus project_data
             if battery_capacity_kwh_correct == 0:
-                project_data = st.session_state.get('project_data', {})
+                project_data = build_project_data(st.session_state.get('project_data', {}))
                 project_details = project_data.get('project_details', {})
                 battery_capacity_kwh_correct = project_details.get('selected_storage_storage_power_kw', 0.0)
             

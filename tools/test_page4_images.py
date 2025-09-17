@@ -1,10 +1,11 @@
 from pdf_generator import generate_main_template_pdf_bytes
 import os
+from calculations import build_project_data
 
 # 1x1 PNG (transparent) als Base64
 png_b64 = "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR4nGMAAQAABQABDQottAAAAABJRU5ErkJggg=="
 
-project_data={
+project_data=build_project_data({
   'customer_data':{'first_name':'Test','last_name':'Kunde'},
   'project_details': {
     'module_quantity': 12,
@@ -26,7 +27,7 @@ project_data={
     'selected_storage_storage_power_kw':7.0,
     'selected_storage_power_kw':7.0,
   }
-}
+})
 analysis_results={'total_investment_netto':12345.67,'annual_pv_production_kwh':5000,'annual_consumption_kwh':4000,'storage_dod_percent':80,'storage_cycles':5000}
 company_info={'name':'ACME GmbH'}
 

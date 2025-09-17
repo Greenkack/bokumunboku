@@ -8,6 +8,7 @@ Mini-Diagnose für Seite 3:
 """
 import sys, json
 from pathlib import Path
+from calculations import build_project_data
 
 # ---- Pfade so setzen, dass sowohl Paket- als auch Flat-Layout funktionieren ----
 THIS_FILE = Path(__file__).resolve()
@@ -30,10 +31,10 @@ except Exception:
         sys.exit(1)
 
 def main():
-    project_data = {
+    project_data = build_project_data({
         "einspeise_art": "parts",   # Teileinspeisung
         # optional: "anlage_kwp": 9.5,
-    }
+    })
 
     analysis_results = {
         "anlage_kwp": 9.5,

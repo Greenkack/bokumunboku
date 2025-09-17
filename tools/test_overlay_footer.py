@@ -6,11 +6,12 @@ if str(base_dir) not in sys.path:
     sys.path.insert(0, str(base_dir))
 
 from pdf_template_engine import build_dynamic_data, generate_custom_offer_pdf
+from calculations import build_project_data
 
 coords_dir = base_dir / "coords"
 bg_dir = base_dir / "pdf_templates_static" / "notext"
 
-project_data = {}
+project_data = build_project_data({})
 analysis_results = {}
 company_info = {"name": "DING Solar GmbH", "short_name": "DING", "city": "Hamburg", "zip_code": "22359"}
 

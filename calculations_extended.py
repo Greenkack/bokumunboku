@@ -25,6 +25,7 @@ Version: 1.1 (AI-Fully-Implemented)
 
 from typing import Dict, Any, List, Union
 import numpy_financial as npf  # Benötigt: pip install numpy-financial
+from calculations import compute_annual_savings
 
 # --- Globale Annahmen für Berechnungen (können in Settings ausgelagert werden) ---
 LIFESPAN_YEARS = 25  # Lebensdauer der Anlage in Jahren
@@ -400,7 +401,7 @@ def run_all_extended_analyses(offer_data: Dict[str, Any]) -> Dict[str, Any]:
     """
     # Benötigte Basis-Daten extrahieren
     investment = offer_data.get("total_investment", 0)
-    annual_savings = offer_data.get("annual_savings", 0)
+    annual_savings = compute_annual_savings(results=offer_data, default=0)
     annual_production = offer_data.get("annual_production_kwh", 0)
     pv_size_kwp = offer_data.get("pv_size_kwp", 0)
     # Annahme: Graue Energie für Speicher/Wallbox wird hier vereinfacht hinzugerechnet

@@ -1,9 +1,10 @@
 from pdf_template_engine.placeholders import build_dynamic_data
+from calculations import build_project_data
 
-project_data = {
+project_data = build_project_data({
     "einspeise_art": "parts",
     "annual_consumption_kwh": 6000,
-}
+})
 analysis_results = {
     "anlage_kwp": 9.5,
     "annual_pv_production_kwh": 6000,

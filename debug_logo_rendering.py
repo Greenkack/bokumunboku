@@ -10,6 +10,7 @@ sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 import tempfile
 from pdf_template_engine.placeholders import build_dynamic_data
 import yaml
+from calculations import build_project_data
 
 def test_logo_debug():
     """Debuggt das Logo-Rendering im Detail"""
@@ -17,7 +18,7 @@ def test_logo_debug():
     print("=" * 60)
     
     # 1. Test-Daten vorbereiten
-    project_data = {
+    project_data = build_project_data({
         "customer_data": {
             "first_name": "Max",
             "last_name": "Mustermann"
@@ -27,7 +28,7 @@ def test_logo_debug():
             "inverter": {"brand_name": "GoodWe", "product_name": "Test Inverter"}, 
             "storage": {"brand_name": "BYD", "product_name": "Test Storage"}
         }
-    }
+    })
     
     analysis_results = {"total_investment_netto": 15000}
     company_info = {"name": "Test GmbH"}

@@ -1,0 +1,82 @@
+# Docker Compose für Solar App
+# Backend + Frontend + Datenbank
+
+version: '3.8'
+
+services:
+  # FastAPI Backend
+  backend:
+    build: 
+      context: ./backend_example
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    environment:
+      - DATABASE_URL=sqlite:///data/solar_app.db
+      - ENVIRONMENT=development
+    volumes:
+      - ./backend_example/data:/app/data
+      - ./backend_example/uploads:/app/uploads
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    restart: unless-stopped
+
+  # Vue.js Frontend (später)
+  frontend:
+    build:
+      context: ./frontend_vue
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    environment:
+      - VITE_API_URL=http://localhost:8000
+    depends_on:
+      - backend
+    restart: unless-stopped
+    profiles:
+      - frontend  # Optional profile
+
+  # Redis für Background Tasks (optional)
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    restart: unless-stopped
+    profiles:
+      - redis  # Optional profile
+
+  # PostgreSQL (für Production, optional)
+  postgres:
+    image: postgres:15-alpine
+    environment:
+      POSTGRES_DB: solar_app
+      POSTGRES_USER: solar_user
+      POSTGRES_PASSWORD: solar_password
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    restart: unless-stopped
+    profiles:
+      - postgres  # Optional profile
+
+volumes:
+  redis_data:
+  postgres_data:
+
+# Development Setup (nur Backend):
+# docker-compose up backend
+
+# Full Setup (mit Frontend):
+# docker-compose --profile frontend up
+
+# Mit Redis:
+# docker-compose --profile redis up backend redis
+
+# Production (mit PostgreSQL):
+# docker-compose --profile postgres --profile frontend up

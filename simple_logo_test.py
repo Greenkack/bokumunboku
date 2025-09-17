@@ -10,6 +10,7 @@ sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 from pdf_template_engine.placeholders import build_dynamic_data
 from brand_logo_db import get_logos_for_brands
 import product_db
+from calculations import build_project_data
 
 def test_logo_data_preparation():
     """Testet die Vorbereitung der Logo-Daten"""
@@ -17,7 +18,7 @@ def test_logo_data_preparation():
     print("=" * 50)
     
     # Simuliere Projektdaten mit Produkten von Herstellern, die Logos haben
-    project_data = {
+    project_data = build_project_data({
         "customer_data": {
             "first_name": "Max",
             "last_name": "Mustermann"
@@ -40,7 +41,7 @@ def test_logo_data_preparation():
                 "product_name": "Battery-Box Premium HVM"
             }
         }
-    }
+    })
     
     analysis_results = {
         "total_investment_netto": 15000,

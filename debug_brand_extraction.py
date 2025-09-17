@@ -8,9 +8,10 @@ import os
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 
 from pdf_logo_integration import extract_brands_from_project_data
+from calculations import build_project_data
 
 # Test-Daten wie im simple_logo_test.py
-project_data = {
+project_data = build_project_data({
     "customer_data": {
         "first_name": "Max",
         "last_name": "Mustermann"
@@ -33,7 +34,7 @@ project_data = {
             "product_name": "Battery-Box Premium HVM"
         }
     }
-}
+})
 
 print("🔍 DEBUG: extract_brands_from_project_data")
 print("=" * 50)

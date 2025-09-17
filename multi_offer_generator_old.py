@@ -269,7 +269,7 @@ class MultiCompanyOfferGenerator:
                         
                         st.write(f" Erstelle Angebot für Firma: {company_name}")
                         
-                        project_data = self._prepare_project_data_for_pdf(company_id)
+                        project_data = build_project_data(self._prepare_project_data_for_pdf(company_id))
                         analysis_results = {
                             "anlage_kwp": 8.5,
                             "annual_pv_production_kwh": 8500,
@@ -374,7 +374,7 @@ def render_multi_offer_generator(texts, project_data_doc=None, calc_results_doc=
             st.info(" Kundendaten aus Projekt und Bedarfsanalyse übernommen")
     
     # Projektdaten aus session_state verwenden falls verfügbar
-    project_data = st.session_state.get("project_data", {})
+    project_data = build_project_data(st.session_state.get("project_data", {}))
     if project_data and not st.session_state.multi_offer_customer_data.get("last_name"):
         # Versuche Kundendaten aus project_data zu extrahieren
         customer_data = {}
@@ -734,7 +734,7 @@ if __name__ == "__main__":
                         "",
                         company_details.get("name", f"Firma_{company_id}"),
                     ).strip()
-                    project_data = self._prepare_project_data_for_pdf(company_id)
+                    project_data = build_project_data(self._prepare_project_data_for_pdf(company_id))
                     analysis_results = {
                         "anlage_kwp": 8.5,
                         "annual_pv_production_kwh": 8500,
@@ -857,7 +857,7 @@ def render_multi_offer_generator(texts, project_data, calc_results):
                     
                     if results and not errors_list:
                         amortization = results.get('amortization_time_years', 'N/A')
-                        annual_savings = results.get('annual_financial_benefit_year1', 'N/A')
+                        annual_savings = compute_annual_savings(results=results, default='N/A')
                         st.write(f"   Angebot für {customer_name} berechnet. Amortisation: {amortization} Jahre, Ersparnis: {annual_savings}€/Jahr")
                         successful_offers += 1
                     else:
@@ -906,6 +906,8 @@ import json
 import traceback
 from concurrent.futures import ThreadPoolExecutor, as_completed
 import threading
+from calculations import compute_annual_savings
+from calculations import build_project_data
 
 # Import der notwendigen Module
 try:

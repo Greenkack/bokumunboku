@@ -1,6 +1,7 @@
 # tools/test_page3_values.py
 import sys
 from pathlib import Path
+from calculations import build_project_data
 
 THIS = Path(__file__).resolve()
 ROOT = THIS.parents[1]  # ...\corba_best-main
@@ -13,7 +14,7 @@ except Exception:
     from placeholders import build_dynamic_data
 
 def test_page3_values_baseline():
-    project_data = {"einspeise_art": "parts"}
+    project_data = build_project_data({"einspeise_art": "parts"})
     analysis_results = {
         "anlage_kwp": 9.5,
         "netzeinspeisung_kwh": 4683,

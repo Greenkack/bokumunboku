@@ -10,6 +10,7 @@ sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 from pdf_template_engine.dynamic_overlay import apply_dynamic_overlay_to_pdf
 from pdf_template_engine.placeholders import build_dynamic_data
 import tempfile
+from calculations import build_project_data
 
 def test_logo_rendering_debug():
     """Teste Logo-Rendering mit Debug-Output"""
@@ -17,7 +18,7 @@ def test_logo_rendering_debug():
     print("=" * 50)
     
     # Test-Daten mit bekannten Logo-Herstellern
-    project_data = {
+    project_data = build_project_data({
         "customer_data": {
             "first_name": "Max",
             "last_name": "Mustermann"
@@ -40,7 +41,7 @@ def test_logo_rendering_debug():
                 "product_name": "Battery-Box Premium HVM"
             }
         }
-    }
+    })
     
     analysis_results = {
         "total_investment_netto": 15000,

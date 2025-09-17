@@ -18,6 +18,8 @@ import json
 import re
 import io
 from datetime import datetime
+from calculations import compute_annual_savings
+from calculations import build_project_data
 
 # =============================================================================
 # ZENTRALE IMPORT-VERWALTUNG - ALLE PDF-SYSTEME AN EINEM ORT
@@ -162,7 +164,7 @@ class PDFSystemManager:
         try:
             # Zuerst: TOM-90 Exact Renderer (standalone function)
             from tom90_exact_renderer import generate_tom90_exact_pdf
-            project_data = kwargs.get('project_data', {})
+            project_data = build_project_data(kwargs.get('project_data', {}))
             analysis_results = kwargs.get('analysis_results', {})
             company_info = kwargs.get('company_info', {})
             
@@ -403,7 +405,7 @@ class PDFSystemManager:
         try:
             from tom90_exact_renderer import generate_tom90_exact_pdf
             
-            project_data = kwargs.get('project_data', {})
+            project_data = build_project_data(kwargs.get('project_data', {}))
             analysis_results = kwargs.get('analysis_results', {})
             company_info = kwargs.get('company_info', {})
             
@@ -457,7 +459,7 @@ class PDFSystemManager:
         
         # Daten extrahieren
         company_info = kwargs.get('company_info', {})
-        project_data = kwargs.get('project_data', {})
+        project_data = build_project_data(kwargs.get('project_data', {}))
         analysis_results = kwargs.get('analysis_results', {})
         
         company_name = company_info.get('name', 'Unbekannte Firma')
@@ -503,7 +505,7 @@ class PDFSystemManager:
             
             total_investment = analysis_results.get('total_investment', 'N/A')
             payback_period = analysis_results.get('payback_period', 'N/A')
-            annual_savings = analysis_results.get('annual_savings', 'N/A')
+            annual_savings = compute_annual_savings(results=analysis_results, default='N/A')
             
             p.drawString(70, y_position, f"• Gesamtinvestition: {total_investment} €")
             y_position -= 20
@@ -1981,7 +1983,7 @@ class CentralPDFInterface:
         if not project_data or not analysis_results:
             st.error(" Unvollständige Projektdaten!")
             if st.button(" Daten aus Session State wiederherstellen"):
-                project_data = st.session_state.get('project_data', {})
+                project_data = build_project_data(st.session_state.get('project_data', {}))
                 analysis_results = st.session_state.get('calculation_results', {})
                 st.rerun()
             return

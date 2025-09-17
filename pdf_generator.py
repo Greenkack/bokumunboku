@@ -19,6 +19,7 @@ from datetime import datetime
 from typing import Any, Dict, List, Optional, Union, Callable
 from pathlib import Path
 from theming.pdf_styles import get_theme
+from calculations import build_project_data
 
 # Optional PDF Templates import
 try:
@@ -364,22 +365,39 @@ def generate_main_template_pdf_bytes(
         print("[TEMPLATE] build_dynamic_data start")
     dyn_data = build_dynamic_data(project_data, analysis_results, company_info)
 
-    # Dynamische Reihenfolge Photovoltaik / Wärmepumpe: segment_order aus inclusion_options (liegt nicht direkt vor),
-    # deshalb aus project_data Hint lesen
+    # Dynamische Reihenfolge Photovoltaik / Wärmepumpe: segment_order aus project_data lesen
     segment_order = []
     try:
         segment_order = (project_data.get('pdf_segment_order') or []) if isinstance(project_data, dict) else []
+        if debug_templates:
+            print(f"[TEMPLATE] segment_order from project_data: {segment_order}")
     except Exception:
         segment_order = []
-    # Fallback: Wenn heatpump_offer existiert und PV-Daten (anlage_kwp) -> PV zuerst
+    
+    # Fallback: Automatische Erkennung nur wenn keine explizite Reihenfolge gesetzt
     if not segment_order:
-        has_hp = bool(project_data.get('heatpump_offer'))
+        # Erweiterte Wärmepumpen-Erkennung
+        has_hp = bool(
+            project_data.get('heatpump_offer') or 
+            project_data.get('heatpump_data') or 
+            project_data.get('building_data') or
+            project_data.get('economics_data') or
+            'heatpump' in str(project_data).lower() or
+            'wärmepumpe' in str(project_data).lower() or
+            'heat_pump' in str(project_data).lower()
+        )
         has_pv = bool(analysis_results and analysis_results.get('anlage_kwp'))
+        if debug_templates:
+            print(f"[TEMPLATE] Fallback detection - has_hp: {has_hp}, has_pv: {has_pv}")
+            print(f"[TEMPLATE] project_data keys: {list(project_data.keys()) if project_data else 'None'}")
         if has_hp and has_pv:
             segment_order = ['Photovoltaik','Wärmepumpe']
         elif has_hp:
             segment_order = ['Wärmepumpe']
         else:
+            segment_order = ['Photovoltaik']
+        if debug_templates:
+            print(f"[TEMPLATE] Fallback segment_order: {segment_order}")
             segment_order = ['Photovoltaik']
 
     # Wärmepumpe Koordinaten verfügbar?
@@ -435,7 +453,30 @@ def generate_main_template_pdf_bytes(
                 overlay_bytes = overlay_parts[0] if overlay_parts else b""
         if debug_templates:
             print(f"[TEMPLATE] overlay size={len(overlay_bytes)} bytes")
-        fused = merge_with_background(overlay_bytes, bg_dir)
+        
+        # Template-Präfix basierend auf Segment-Reihenfolge bestimmen
+        template_prefix = "nt_nt"  # Default für PV
+        if segment_order and len(segment_order) == 1:
+            # Nur ein Segment - bestimme Präfix
+            if segment_order[0] == 'Wärmepumpe':
+                template_prefix = "hp_nt"
+        elif 'Wärmepumpe' in segment_order and not 'Photovoltaik' in segment_order:
+            # Nur Wärmepumpe
+            template_prefix = "hp_nt"
+        # Bei Kombinationen (PV + WP) bleibt "nt_nt" als Default
+        
+        if debug_templates:
+            print(f"[TEMPLATE] using template_prefix={template_prefix} for segments={segment_order}")
+        
+        # Debug für Streamlit UI
+        try:
+            import streamlit as st
+            if hasattr(st, 'session_state'):
+                st.info(f"🎨 **Template-System:** Verwende `{template_prefix}_XX.pdf` Templates für Segmente: {segment_order}")
+        except:
+            pass
+        
+        fused = merge_with_background(overlay_bytes, bg_dir, template_prefix)
         if debug_templates:
             print(f"[TEMPLATE] fused main7 size={len(fused)} bytes")
         return fused
@@ -1763,7 +1804,7 @@ def generate_offer_pdf(
     # Vor-Validierung: fehlende Felder defensiv ergänzen (Firmendaten + final_price)
     try:
         # Projekt-/Analyse-Dicts lokal kopieren, um Seiteneffekte zu vermeiden
-        project_data = dict(project_data or {})
+        project_data = build_project_data(dict(project_data or {}))
         analysis_results = dict(analysis_results or {})
 
         # 1) Firmendaten in project_data.company_information injizieren, falls nicht vorhanden

@@ -1,0 +1,94 @@
+file,lineno,lhs,rhs_sig,rhs_shape,rhs_vars,line
+.\kakerlake_ultra_cleaner.py,353,call,"('Attr', 'orig', 'value')","('Attr',)",orig,call=orig.value
+.\kakerlake_ultra_cleaner.py,479,rhs,"('Attr', 'orig', 'value')","('Attr',)",orig,rhs=orig.value
+.\kakerlake_ultra_cleaner.py,363,sub,"('Attr', 'orig', 'value')","('Attr',)",orig,sub=orig.value
+.\kakerlake_ultra_cleaner.py,405,val,"('Attr', 'orig', 'value')","('Attr',)",orig,val=orig.value
+.\kakerlake_ultra_cleaner.py,481,new,"('Call', ('Attr', 'cst', 'parse_expression'), (('Other', 'JoinedStr'),), ())","('Call', 1, 0)","cst,rhs","new=cst.parse_expression(f""build_project_data({rhs.code})""); self.changed=True"
+.\kakerlake_ultra_cleaner.py,485,new,"('Call', ('Attr', 'cst', 'parse_expression'), (('Other', 'JoinedStr'),), ())","('Call', 1, 0)","cst,rhs","new=cst.parse_expression(f""build_project_data({rhs.left.code}, {rhs.right.code})""); self.changed=True"
+.\kakerlake_ultra_cleaner.py,490,new,"('Call', ('Attr', 'cst', 'parse_expression'), (('Other', 'JoinedStr'),), ())","('Call', 1, 0)","cst,rhs","new=cst.parse_expression(f""build_project_data({rhs.code})""); self.changed=True"
+.\kakerlake_ultra_cleaner.py,358,new_call,"('Call', ('Attr', 'cst', 'parse_expression'), (('Other', 'JoinedStr'),), ())","('Call', 1, 0)","call,cst,default_expr","new_call=cst.parse_expression(f""compute_annual_savings(results={call.func.value.code}, default={default_expr})"")"
+.\kakerlake_ultra_cleaner.py,368,new_call,"('Call', ('Attr', 'cst', 'parse_expression'), (('Other', 'JoinedStr'),), ())","('Call', 1, 0)","cst,sub","new_call=cst.parse_expression(f""compute_annual_savings(results={sub.value.code}, default=0.0)"")"
+.\kakerlake_ultra_cleaner.py,387,new_call,"('Call', ('Attr', 'cst', 'parse_expression'), (('Other', 'JoinedStr'),), ())","('Call', 1, 0)","cons,cst,feed","new_call=cst.parse_expression(f""compute_annual_savings(annual_feedin_revenue={feed.code}, annual_electricity_savings={cons.code}, default=0.0)"")"
+.\kakerlake_ultra_cleaner.py,401,new_call,"('Call', ('Attr', 'cst', 'parse_expression'), (('Other', 'JoinedStr'),), ())","('Call', 1, 0)","cst,l,r","new_call=cst.parse_expression(f""compute_annual_savings(annual_old_cost={l.code}, annual_hp_cost={r.code}, default=0.0)"")"
+.\kakerlake_ultra_cleaner.py,417,new_call,"('Call', ('Attr', 'cst', 'parse_expression'), (('Other', 'JoinedStr'),), ())","('Call', 1, 0)","cst,val","new_call=cst.parse_expression(f""compute_annual_savings(electricity_costs_without_pv={val.left.code}, electricity_costs_with_pv={val.right.code}, default=0.0)"")"
+.\kakerlake_ultra_cleaner.py,424,new_call,"('Call', ('Attr', 'cst', 'parse_expression'), (('Other', 'JoinedStr'),), ())","('Call', 1, 0)","cst,l,r","new_call=cst.parse_expression(f""compute_annual_savings(electricity_costs_without_pv={l.left.code}, electricity_costs_with_pv={l.right.code}, annual_feed_in_revenue={r.code}, default=0.0)"")"
+.\kakerlake_ultra_cleaner.py,429,new_call,"('Call', ('Attr', 'cst', 'parse_expression'), (('Other', 'JoinedStr'),), ())","('Call', 1, 0)","cst,l,r","new_call=cst.parse_expression(f""compute_annual_savings(electricity_costs_without_pv={r.left.code}, electricity_costs_with_pv={r.right.code}, annual_feed_in_revenue={l.code}, default=0.0)"")"
+.\kakerlake_ultra_cleaner.py,304,imp,"('Call', ('Attr', 'cst', 'parse_statement'), (('Other', 'JoinedStr'),), ())","('Call', 1, 0)","cst,module_name,symbol","imp=cst.parse_statement(f""from {module_name} import {symbol}\n"")"
+.\kakerlake_ultra_cleaner.py,473,repl,"('Call', ('Attr', 'cst', 'parse_statement'), (('Other', 'JoinedStr'),), ())","('Call', 1, 0)","arg_code,cst","repl = cst.parse_statement(f""project_data = build_project_data(project_data, {arg_code})\n"")"
+.\kakerlake_ultra_cleaner.py,283,f,"('Call', ('Name', 'Finder'), (), ())","('Call', 0, 0)",Finder,f=Finder(); mod.visit(f)
+.\kakerlake_ultra_cleaner.py,302,finder,"('Call', ('Name', 'Finder'), (), ())","('Call', 0, 0)",Finder,finder=Finder(); module.visit(finder)
+.\kakerlake_ultra_cleaner.py,327,code,"('Call', ('Name', 'read_text'), (('Name', 'path'),), ())","('Call', 1, 0)","path,read_text",code=read_text(path); base=os.path.basename(path).lower()
+.\kakerlake_ultra_cleaner.py,453,code,"('Call', ('Name', 'read_text'), (('Name', 'path'),), ())","('Call', 1, 0)","path,read_text",code=read_text(path); base=os.path.basename(path).lower()
+.\kakerlake_ultra_cleaner.py,549,text,"('Call', ('Name', 'read_text'), (('Name', 'path'),), ())","('Call', 1, 0)","path,read_text",try: text=read_text(path)
+.\kakerlake_ultra_cleaner.py,324,changed_files,"('Const', '0')","('Const',)",,"cst, m = require_libcst(); ensure_dir(out); report=[]; changed_files=0"
+.\kakerlake_ultra_cleaner.py,450,changed_files,"('Const', '0')","('Const',)",,"cst, m = require_libcst(); ensure_dir(out); report=[]; changed_files=0"
+.\kakerlake_ultra_cleaner.py,286,insert_idx,"('Const', '0')","('Const',)",,body=list(mod.body); insert_idx=0
+.\kakerlake_ultra_cleaner.py,305,insert_idx,"('Const', '0')","('Const',)",,body=list(module.body); insert_idx=0
+.\kakerlake_ultra_cleaner.py,546,loader,"('Const', 'False')","('Const',)",,except Exception: yaml=None; loader=False
+.\kakerlake_ultra_cleaner.py,336,self.changed,"('Const', 'False')","('Const',)",,def __init__(self): self.changed=False
+.\kakerlake_ultra_cleaner.py,462,self.changed,"('Const', 'False')","('Const',)",,def __init__(self): self.changed=False
+.\kakerlake_ultra_cleaner.py,280,self.found,"('Const', 'False')","('Const',)",,def __init__(self): self.found=False
+.\kakerlake_ultra_cleaner.py,296,self.found,"('Const', 'False')","('Const',)",,def __init__(self): self.found=False
+.\kakerlake_ultra_cleaner.py,133,lhs,"('Const', 'None')","('Const',)",,lhs=None
+.\kakerlake_ultra_cleaner.py,137,lhs,"('Const', 'None')","('Const',)",,except Exception: lhs=None
+.\kakerlake_ultra_cleaner.py,571,p,"('Const', 'None')","('Const',)",,x=y=p=None
+.\kakerlake_ultra_cleaner.py,571,x,"('Const', 'None')","('Const',)",,x=y=p=None
+.\kakerlake_ultra_cleaner.py,571,y,"('Const', 'None')","('Const',)",,x=y=p=None
+.\kakerlake_ultra_cleaner.py,546,yaml,"('Const', 'None')","('Const',)",,except Exception: yaml=None; loader=False
+.\kakerlake_ultra_cleaner.py,545,loader,"('Const', 'True')","('Const',)",,try: import yaml; loader=True
+.\kakerlake_ultra_cleaner.py,359,self.changed,"('Const', 'True')","('Const',)",,"self.changed=True; report.append(dict(file=path, lineno=str(getattr(orig,'ln','?')), before=orig_code, after=new_call.code, reason=""results_get_to_compute""))"
+.\kakerlake_ultra_cleaner.py,369,self.changed,"('Const', 'True')","('Const',)",,"self.changed=True; report.append(dict(file=path, lineno=str(getattr(orig,'ln','?')), before=orig_code, after=new_call.code, reason=""dict_index_to_compute""))"
+.\kakerlake_ultra_cleaner.py,388,self.changed,"('Const', 'True')","('Const',)",,"self.changed=True; report.append(dict(file=path, lineno=str(getattr(orig,'ln','?')), before=orig_code, after=new_call.code, reason=""feedin_plus_consumption""))"
+.\kakerlake_ultra_cleaner.py,402,self.changed,"('Const', 'True')","('Const',)",,"self.changed=True; report.append(dict(file=path, lineno=str(getattr(orig,'ln','?')), before=orig_code, after=new_call.code, reason=""old_minus_hp""))"
+.\kakerlake_ultra_cleaner.py,418,self.changed,"('Const', 'True')","('Const',)",,"self.changed=True; report.append(dict(file=path, lineno=str(getattr(orig,'ln','?')), before=orig.value.code, after=new_call.code, reason=""without_with_difference""))"
+.\kakerlake_ultra_cleaner.py,425,self.changed,"('Const', 'True')","('Const',)",,"self.changed=True; report.append(dict(file=path, lineno=str(getattr(orig,'ln','?')), before=orig.value.code, after=new_call.code, reason=""diff_plus_feedin""))"
+.\kakerlake_ultra_cleaner.py,430,self.changed,"('Const', 'True')","('Const',)",,"self.changed=True; report.append(dict(file=path, lineno=str(getattr(orig,'ln','?')), before=orig.value.code, after=new_call.code, reason=""feedin_plus_diff""))"
+.\kakerlake_ultra_cleaner.py,474,self.changed,"('Const', 'True')","('Const',)",,"self.changed=True; report.append(dict(file=path, lineno=str(getattr(orig,'ln','?')), before=call.code, after=repl.code.strip(), reason=""project_data.update""))"
+.\kakerlake_ultra_cleaner.py,481,self.changed,"('Const', 'True')","('Const',)",,"new=cst.parse_expression(f""build_project_data({rhs.code})""); self.changed=True"
+.\kakerlake_ultra_cleaner.py,485,self.changed,"('Const', 'True')","('Const',)",,"new=cst.parse_expression(f""build_project_data({rhs.left.code}, {rhs.right.code})""); self.changed=True"
+.\kakerlake_ultra_cleaner.py,490,self.changed,"('Const', 'True')","('Const',)",,"new=cst.parse_expression(f""build_project_data({rhs.code})""); self.changed=True"
+.\kakerlake_ultra_cleaner.py,282,self.found,"('Const', 'True')","('Const',)",,if node.name.value == func_name: self.found=True
+.\kakerlake_ultra_cleaner.py,301,self.found,"('Const', 'True')","('Const',)",,self.found=True
+.\kakerlake_ultra_cleaner.py,535,all_lines,"('List', ())","('List', 0)",,all_lines=[]
+.\kakerlake_ultra_cleaner.py,121,assignments,"('List', ())","('List', 0)",,assignments=[]; func_defs=[]; errors=[]
+.\kakerlake_ultra_cleaner.py,547,collisions,"('List', ())","('List', 0)",,collisions=[]
+.\kakerlake_ultra_cleaner.py,171,conflicts,"('List', ())","('List', 0)",,conflicts=[]
+.\kakerlake_ultra_cleaner.py,551,docs,"('List', ())","('List', 0)",,docs=[]
+.\kakerlake_ultra_cleaner.py,556,docs,"('List', ())","('List', 0)",,except Exception: docs=[]
+.\kakerlake_ultra_cleaner.py,121,errors,"('List', ())","('List', 0)",,assignments=[]; func_defs=[]; errors=[]
+.\kakerlake_ultra_cleaner.py,121,func_defs,"('List', ())","('List', 0)",,assignments=[]; func_defs=[]; errors=[]
+.\kakerlake_ultra_cleaner.py,579,groups,"('List', ())","('List', 0)",,groups=[]
+.\kakerlake_ultra_cleaner.py,79,items,"('List', ())","('List', 0)",,items=[];
+.\kakerlake_ultra_cleaner.py,526,lines,"('List', ())","('List', 0)",,lines=[]; root_path=Path(root_dir)
+.\kakerlake_ultra_cleaner.py,30,out,"('List', ())","('List', 0)",,out=[];
+.\kakerlake_ultra_cleaner.py,37,out,"('List', ())","('List', 0)",,out=[];
+.\kakerlake_ultra_cleaner.py,324,report,"('List', ())","('List', 0)",,"cst, m = require_libcst(); ensure_dir(out); report=[]; changed_files=0"
+.\kakerlake_ultra_cleaner.py,450,report,"('List', ())","('List', 0)",,"cst, m = require_libcst(); ensure_dir(out); report=[]; changed_files=0"
+.\kakerlake_ultra_cleaner.py,160,rows,"('List', ())","('List', 0)",,rows=[]
+.\kakerlake_ultra_cleaner.py,513,rows,"('List', ())","('List', 0)",,ensure_dir(out); rows=[]
+.\kakerlake_ultra_cleaner.py,591,rows,"('List', ())","('List', 0)",,rows=[]
+.\kakerlake_ultra_cleaner.py,472,arg_code,"('Other', 'IfExp')","('Other', 'IfExp')",call,"arg_code = call.args[0].value.code if call.args else ""{}"""
+.\kakerlake_ultra_cleaner.py,386,cons,"('Other', 'IfExp')","('Other', 'IfExp')","feed,l,r",cons = r if feed is l else l
+.\kakerlake_ultra_cleaner.py,357,default_expr,"('Other', 'IfExp')","('Other', 'IfExp')","call,len","default_expr = call.args[1].value.code if len(call.args)>=2 else ""0.0"""
+.\kakerlake_ultra_cleaner.py,385,feed,"('Other', 'IfExp')","('Other', 'IfExp')","FEEDIN_NAMES,l,name_in,r","feed = l if name_in(l, FEEDIN_NAMES) else r"
+.\kakerlake_ultra_cleaner.py,489,fname,"('Other', 'IfExp')","('Other', 'IfExp')","m,rhs","fname = rhs.func.attr.value if m.matches(rhs.func, m.Attribute()) else (rhs.func.value if m.matches(rhs.func, m.Name()) else ""call"")"
+.\kakerlake_ultra_cleaner.py,519,lines,"('Other', 'IfExp')","('Other', 'IfExp')",text,"lines=text.count(""\n"")+1 if text else 0"
+.\kakerlake_ultra_cleaner.py,569,p,"('Other', 'IfExp')","('Other', 'IfExp')","int,o,pg",p=int(o[pg]) if pg and o.get(pg) is not None else None
+.\kakerlake_ultra_cleaner.py,491,reason,"('Other', 'IfExp')","('Other', 'IfExp')","fname,str","reason = f""{fname}_to_builder"" if str(fname).lower() in {""dict"",""merge"",""combine"",""deepmerge"",""update""} else ""call_wrapped_to_builder"""
+.\kakerlake_ultra_cleaner.py,517,size,"('Other', 'IfExp')","('Other', 'IfExp')","os,p",size=os.path.getsize(p) if os.path.exists(p) else None
+.\kakerlake_ultra_cleaner.py,129,targets,"('Other', 'IfExp')","('Other', 'IfExp')","ast,isinstance,node","targets = node.targets if isinstance(node, ast.Assign) else ([node.target] if node.target is not None else [])"
+.\kakerlake_ultra_cleaner.py,518,text,"('Other', 'IfExp')","('Other', 'IfExp')","ext,p,read_text","text=read_text(p) if ext in {"".py"","".ts"","".tsx"","".js"","".json"","".yml"","".yaml"","".md"","".txt"","".ini"","".cfg""} else """""
+.\kakerlake_ultra_cleaner.py,142,text_line,"('Other', 'IfExp')","('Other', 'IfExp')","len,lineno,lines","text_line=lines[lineno-1].strip() if lineno and 1<=lineno<=len(lines) else """""
+.\kakerlake_ultra_cleaner.py,72,vals,"('Other', 'IfExp')","('Other', 'IfExp')","ast,isinstance,node,node_signature,sorted,tuple,v","vals = tuple(sorted(node_signature(v) for v in node.values)) if isinstance(node.op,(ast.And,ast.Or)) else tuple(node_signature(v) for v in node.values)"
+.\kakerlake_ultra_cleaner.py,130,value,"('Other', 'IfExp')","('Other', 'IfExp')","hasattr,node","value = node.value if hasattr(node,'value') else None"
+.\kakerlake_ultra_cleaner.py,567,x,"('Other', 'IfExp')","('Other', 'IfExp')","float,o,xk",x=float(o[xk]) if xk and o.get(xk) is not None else None
+.\kakerlake_ultra_cleaner.py,568,y,"('Other', 'IfExp')","('Other', 'IfExp')","float,o,yk",y=float(o[yk]) if yk and o.get(yk) is not None else None
+.\kakerlake_ultra_cleaner.py,316,CONSUMP_SAVINGS_NAMES,"('Other', 'Set')","('Other', 'Set')",,"CONSUMP_SAVINGS_NAMES = {'annual_electricity_savings','consumption_savings','annual_savings_consumption_eur'}"
+.\kakerlake_ultra_cleaner.py,321,FEEDIN_EXTRA,"('Other', 'Set')","('Other', 'Set')",,"FEEDIN_EXTRA = {'annual_feed_in_revenue','annual_feedin_revenue','feed_in_revenue','annual_revenue_feed_in_eur'}"
+.\kakerlake_ultra_cleaner.py,315,FEEDIN_NAMES,"('Other', 'Set')","('Other', 'Set')",,"FEEDIN_NAMES = {'annual_feedin_revenue','feed_in_revenue','annual_feed_in_revenue','annual_revenue_feed_in_eur'}"
+.\kakerlake_ultra_cleaner.py,313,HEIKLE_PATTERNS,"('Other', 'Set')","('Other', 'Set')",,"HEIKLE_PATTERNS = {('peak_reduction_kw','*','power_price_per_kw')}"
+.\kakerlake_ultra_cleaner.py,318,HP_COST_NAMES,"('Other', 'Set')","('Other', 'Set')",,"HP_COST_NAMES  = {'annual_hp_cost','hp_annual_cost','annual_cost_hp'}"
+.\kakerlake_ultra_cleaner.py,317,OLD_COST_NAMES,"('Other', 'Set')","('Other', 'Set')",,"OLD_COST_NAMES = {'annual_old_cost','old_annual_cost','annual_cost_old'}"
+.\kakerlake_ultra_cleaner.py,314,RESULT_KEYS,"('Other', 'Set')","('Other', 'Set')",,"RESULT_KEYS = {'annual_total_savings_euro','annual_financial_benefit_year1','annual_savings_consumption_eur','jahresersparnis_gesamt','total_annual_savings','annual_savings','annual_savings_total_euro'}"
+.\kakerlake_ultra_cleaner.py,319,WITHOUT_PV_NAMES,"('Other', 'Set')","('Other', 'Set')",,"WITHOUT_PV_NAMES={'electricity_costs_without_pv','cost_without_pv','annual_cost_without_pv'}"
+.\kakerlake_ultra_cleaner.py,320,WITH_PV_NAMES,"('Other', 'Set')","('Other', 'Set')",,"WITH_PV_NAMES={'electricity_costs_with_pv','cost_with_pv','annual_cost_with_pv'}"

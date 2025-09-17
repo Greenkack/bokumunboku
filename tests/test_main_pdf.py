@@ -30,6 +30,7 @@ except Exception:
     def get_product_by_id_func(*args, **kwargs): return None
 
 import json
+from calculations import build_project_data
 texts = {}
 try:
     de_path = root / 'de.json'
@@ -39,7 +40,7 @@ except Exception:
     pass
 
 # Minimal project data
-project_data = {
+project_data = build_project_data({
     'customer_data': {
         'salutation': 'Herr',
         'first_name': 'Max',
@@ -58,7 +59,7 @@ project_data = {
         'selected_inverter_name': 'WR 5kW',
         'selected_storage_capacity_kwh': 5.1,
     }
-}
+})
 
 analysis_results = {
     'anlage_kwp': 8.4,

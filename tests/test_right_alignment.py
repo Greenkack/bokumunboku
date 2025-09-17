@@ -8,11 +8,12 @@ import os
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 
 from pdf_template_engine.placeholders import build_dynamic_data
+from calculations import build_project_data
 
 def test_right_aligned_values():
     """Teste die Werte für rechtsbündige Ausrichtung"""
     
-    project_data = {"einspeise_art": "parts"}
+    project_data = build_project_data({"einspeise_art": "parts"})
     analysis_results = {
         "anlage_kwp": 9.5,
         "netzeinspeisung_kwh": 4683,

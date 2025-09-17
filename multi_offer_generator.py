@@ -14,6 +14,7 @@ import io
 import re
 from typing import Dict, List, Any
 import traceback
+from calculations import build_project_data
 
 try:
     from tqdm import tqdm
@@ -33,7 +34,7 @@ try:
         list_company_documents,
     )
     from calculations import perform_calculations, calculate_offer_details
-    from pdf_generator import generate_offer_pdf_with_main_templates as generate_offer_pdf, create_offer_pdf, merge_pdfs
+    from pdf_generator import generate_offer_pdf, merge_pdfs
     from product_db import get_product_by_id, list_products
     
     # PDF Output Directory - lokale Definition statt Import
@@ -106,40 +107,63 @@ class MultiCompanyOfferGenerator:
         st.subheader("Schritt 1: Kundendaten aus Projekt übernehmen")
         
         # Versuche Kundendaten aus project_data zu übernehmen
-        project_data = st.session_state.get("project_data", {})
+        project_data = build_project_data(st.session_state.get("project_data", {}))
         customer_data = project_data.get("customer_data", {})
         
         if customer_data:
             # Daten gefunden - anzeigen und übernehmen
             st.success(" Kundendaten aus Projekt-/Bedarfsanalyse gefunden!")
             
-            cols = st.columns(2)
+            cols = st.columns([3, 1])
             with cols[0]:
-                st.write("**Kundendaten:**")
-                st.write(f"Name: {customer_data.get('first_name', '')} {customer_data.get('last_name', '')}")
-                st.write(f"E-Mail: {customer_data.get('email', 'Nicht angegeben')}")
-                st.write(f"Telefon: {customer_data.get('phone', 'Nicht angegeben')}")
+                # Kundendaten-Vorschau in kompakter Form
+                with st.expander(" Kundendaten anzeigen", expanded=True):
+                    sub_cols = st.columns(2)
+                    with sub_cols[0]:
+                        st.write("**Kundendaten:**")
+                        st.write(f"Name: {customer_data.get('first_name', '')} {customer_data.get('last_name', '')}")
+                        st.write(f"E-Mail: {customer_data.get('email', 'Nicht angegeben')}")
+                        st.write(f"Telefon: {customer_data.get('phone', 'Nicht angegeben')}")
+                    
+                    with sub_cols[1]:
+                        st.write("**Adresse:**")
+                        st.write(f"Straße: {customer_data.get('address', 'Nicht angegeben')}")
+                        st.write(f"PLZ/Ort: {customer_data.get('zip_code', '')} {customer_data.get('city', '')}")
             
             with cols[1]:
-                st.write("**Adresse:**")
-                st.write(f"Straße: {customer_data.get('address', 'Nicht angegeben')}")
-                st.write(f"PLZ/Ort: {customer_data.get('zip_code', '')} {customer_data.get('city', '')}")
+                # Aktions-Buttons für Kundendaten
+                st.markdown("**Aktionen:**")
+                if st.button("📝 Bearbeiten", help="Kundendaten manuell bearbeiten"):
+                    st.session_state.multi_offer_edit_customer = True
+                    st.rerun()
+                    
+                if st.button("🔄 Zurücksetzen", help="Alle Kundendaten löschen"):
+                    st.session_state.multi_offer_customer_data = {}
+                    st.session_state.multi_offer_project_data = {}
+                    st.session_state.multi_offer_edit_customer = False
+                    st.rerun()
             
             # Kundendaten in multi_offer_customer_data übernehmen
             st.session_state.multi_offer_customer_data = customer_data.copy()
             
             # Projektdaten anzeigen falls verfügbar
             if project_data.get("consumption_data"):
-                st.write("**Verbrauchsdaten:**")
-                consumption = project_data["consumption_data"]
-                st.write(f"Jahresverbrauch: {consumption.get('annual_consumption', 'N/A')} kWh")
-                st.write(f"Strompreis: {consumption.get('electricity_price', 'N/A')} €/kWh")
-              # Projektdaten auch in session state speichern für PDF-Generierung
+                with st.expander(" Projektdaten anzeigen"):
+                    st.write("**Verbrauchsdaten:**")
+                    consumption = project_data["consumption_data"]
+                    st.write(f"Jahresverbrauch: {consumption.get('annual_consumption', 'N/A')} kWh")
+                    st.write(f"Strompreis: {consumption.get('electricity_price', 'N/A')} €/kWh")
+            
+            # Projektdaten auch in session state speichern für PDF-Generierung
             st.session_state.multi_offer_project_data = project_data.copy()
             
-        else:
+        # Bearbeiten-Modus oder wenn keine Projektdaten vorhanden
+        if (not customer_data or st.session_state.get("multi_offer_edit_customer", False)):
             # Fallback: Manuelle Eingabe wenn keine Projektdaten vorhanden
-            st.warning(" Keine Kundendaten aus Projekt gefunden. Bitte zuerst die Projekt-/Bedarfsanalyse durchführen oder Daten manuell eingeben.")
+            if not customer_data:
+                st.warning(" Keine Kundendaten aus Projekt gefunden. Bitte zuerst die Projekt-/Bedarfsanalyse durchführen oder Daten manuell eingeben.")
+            else:
+                st.info(" Bearbeiten-Modus: Kundendaten manuell anpassen")
             
             with st.form("customer_data_form_multi"):
                 cols = st.columns(2)
@@ -164,8 +188,23 @@ class MultiCompanyOfferGenerator:
                 data["email"] = st.text_input("E-Mail", value=data.get("email", ""))
                 data["phone"] = st.text_input("Telefon", value=data.get("phone", ""))
                 
-                if st.form_submit_button("Kundendaten speichern"):
+                # Form-Buttons
+                submit_cols = st.columns([1, 1, 1, 2])
+                form_submitted = submit_cols[0].form_submit_button("💾 Speichern")
+                form_cancelled = submit_cols[1].form_submit_button("❌ Abbrechen")
+                form_reset = submit_cols[2].form_submit_button("🔄 Zurücksetzen")
+                
+                if form_submitted:
+                    st.session_state.multi_offer_edit_customer = False
                     st.success("Kundendaten gespeichert.")
+                    st.rerun()
+                elif form_cancelled:
+                    st.session_state.multi_offer_edit_customer = False
+                    st.rerun()
+                elif form_reset:
+                    for key in list(data.keys()):
+                        data[key] = ""
+                    st.rerun()
         
         return bool(st.session_state.multi_offer_customer_data.get("first_name"))
 
@@ -176,6 +215,11 @@ class MultiCompanyOfferGenerator:
         all_companies = self.get_available_companies()
         if not all_companies:
             st.warning("Keine Firmen in der Datenbank gefunden. Bitte im Admin-Panel anlegen.")
+            
+            # Button zum Admin-Panel
+            if st.button("🏢 Firmen im Admin-Panel verwalten", help="Zum Admin-Panel wechseln um Firmen hinzuzufügen"):
+                st.session_state['selected_page_key_sui'] = 'admin'
+                st.rerun()
             return False
         
         # Erweiterte Firmenauswahl-UI
@@ -487,6 +531,7 @@ class MultiCompanyOfferGenerator:
         # PDF-Optionen initialisieren falls nicht vorhanden
         if "pdf_options" not in settings:
             settings["pdf_options"] = {
+                "extended_output": False,  # Standard: kompakte 6-Seiten-PDFs
                 "include_company_logo": True,
                 "include_product_images": True,
                 "include_charts": True,
@@ -506,7 +551,13 @@ class MultiCompanyOfferGenerator:
         pdf_cols = st.columns(3)
         
         with pdf_cols[0]:
-            st.markdown("** Branding & Layout**")
+            st.markdown("**📄 PDF-Umfang & Branding**")
+            pdf_options["extended_output"] = st.checkbox(
+                "🚀 Erweiterte PDF-Ausgabe (mehr Seiten)",
+                value=pdf_options.get("extended_output", False),
+                help="Aktiviert zusätzliche Seiten ab Seite 8: Detailanalysen, Finanzierung, alle Diagramme, Dokumente etc."
+            )
+            st.markdown("---")
             pdf_options["include_company_logo"] = st.checkbox(
                 "Firmenlogo anzeigen",
                 value=pdf_options.get("include_company_logo", True),
@@ -564,9 +615,69 @@ class MultiCompanyOfferGenerator:
             pdf_options["selected_sections"] = selected_sections
             
             if len(selected_sections) == 0:
-                st.warning(" Mindestens eine Sektion muss ausgewählt sein!")
+                st.warning("⚠️ Mindestens eine Sektion muss ausgewählt sein!")
             else:
-                st.success(f" {len(selected_sections)} Sektionen ausgewählt")
+                st.success(f"✅ {len(selected_sections)} Sektionen ausgewählt")
+        
+        # Erweiterte PDF-Info
+        if pdf_options.get("extended_output", False):
+            st.success("🚀 **Erweiterte PDF-Ausgabe aktiviert** - Jedes PDF enthält zusätzliche Detailseiten ab Seite 8")
+        else:
+            st.info("📄 **Standard-PDF-Ausgabe** - Kompakte 6-Seiten PDFs pro Firma")
+        
+        # Konfiguration-Aktionen
+        st.markdown("---")
+        action_cols = st.columns([1, 1, 1, 2])
+        
+        with action_cols[0]:
+            if st.button("👁️ Vorschau", help="Zeige eine Zusammenfassung der aktuellen Konfiguration"):
+                st.session_state.multi_offer_show_preview = True
+                st.rerun()
+        
+        with action_cols[1]:
+            if st.button("🔄 Zurücksetzen", help="Alle Konfigurationseinstellungen zurücksetzen"):
+                # Reset auf Standard-Einstellungen
+                st.session_state.multi_offer_settings = {
+                    "include_storage": False,
+                    "product_rotation_enabled": False,
+                    "price_variation_enabled": False,
+                    "pdf_options": {
+                        "extended_output": False,  # Standard: kompakte PDFs
+                        "include_company_logo": True,
+                        "include_product_images": True,
+                        "include_all_documents": False,
+                        "include_charts": True,
+                        "include_visualizations": True,
+                        "include_optional_component_details": True,
+                        "selected_sections": list(available_sections.keys())
+                    }
+                }
+                st.rerun()
+        
+        # Konfiguration-Vorschau anzeigen
+        if st.session_state.get("multi_offer_show_preview", False):
+            with st.expander("📋 Konfiguration-Zusammenfassung", expanded=True):
+                st.markdown("### Aktuelle Konfiguration:")
+                
+                # Basis-Einstellungen
+                st.markdown("**Grundeinstellungen:**")
+                st.write(f"- Batteriespeicher enthalten: {'✅ Ja' if settings['include_storage'] else '❌ Nein'}")
+                st.write(f"- Produktrotation: {'✅ Aktiviert' if settings['product_rotation_enabled'] else '❌ Deaktiviert'}")
+                st.write(f"- Preisvariationen: {'✅ Aktiviert' if settings['price_variation_enabled'] else '❌ Deaktiviert'}")
+                
+                # PDF-Optionen
+                st.markdown("**PDF-Optionen:**")
+                pdf_opts = settings['pdf_options']
+                st.write(f"- 🚀 Erweiterte Ausgabe: {'✅ Aktiviert (mehr Seiten)' if pdf_opts.get('extended_output', False) else '❌ Standard (6 Seiten)'}")
+                st.write(f"- Firmenlogo: {'✅' if pdf_opts['include_company_logo'] else '❌'}")
+                st.write(f"- Produktbilder: {'✅' if pdf_opts['include_product_images'] else '❌'}")
+                st.write(f"- Dokumentenanhang: {'✅' if pdf_opts['include_all_documents'] else '❌'}")
+                st.write(f"- Diagramme: {'✅' if pdf_opts['include_charts'] else '❌'}")
+                st.write(f"- Ausgewählte Sektionen: {len(pdf_opts['selected_sections'])}/{len(available_sections)}")
+                
+                if st.button("✅ Vorschau schließen"):
+                    st.session_state.multi_offer_show_preview = False
+                    st.rerun()
         
         return True
 
@@ -577,7 +688,7 @@ class MultiCompanyOfferGenerator:
         customer_data = st.session_state.multi_offer_customer_data
         selected_companies = st.session_state.multi_offer_selected_companies
         settings = st.session_state.multi_offer_settings
-        project_data = st.session_state.get("multi_offer_project_data", {})
+        project_data = build_project_data(st.session_state.get("multi_offer_project_data", {}))
         
         if not customer_data or not selected_companies:
             st.error("Kundendaten oder Firmenauswahl fehlt!")
@@ -638,12 +749,46 @@ class MultiCompanyOfferGenerator:
                     zip_content = self._create_zip_download(generated_pdfs)
                     
                     st.success(f" {len(generated_pdfs)} Angebote erfolgreich erstellt!")
-                    st.download_button(
-                        label=" Alle Angebote als ZIP herunterladen",
-                        data=zip_content,
-                        file_name=f"Multi_Angebote_{customer_data.get('last_name', 'Kunde')}_{datetime.now().strftime('%Y%m%d_%H%M%S')}.zip",
-                        mime="application/zip"
-                    )
+                    
+                    # Download-Optionen
+                    download_cols = st.columns([1, 1])
+                    
+                    with download_cols[0]:
+                        st.download_button(
+                            label=" Alle Angebote als ZIP herunterladen",
+                            data=zip_content,
+                            file_name=f"Multi_Angebote_{customer_data.get('last_name', 'Kunde')}_{datetime.now().strftime('%Y%m%d_%H%M%S')}.zip",
+                            mime="application/zip"
+                        )
+                    
+                    with download_cols[1]:
+                        if st.button("📁 Einzelne PDFs anzeigen"):
+                            st.session_state.multi_offer_show_individual = True
+                            st.rerun()
+                    
+                    # Einzelne PDF-Downloads anzeigen
+                    if st.session_state.get("multi_offer_show_individual", False):
+                        with st.expander("📄 Einzelne Angebote herunterladen", expanded=True):
+                            st.markdown("**Einzelne PDF-Downloads:**")
+                            
+                            # PDFs in 2er-Spalten anzeigen
+                            pdf_cols = st.columns(2)
+                            for i, pdf_data in enumerate(generated_pdfs):
+                                col_index = i % 2
+                                with pdf_cols[col_index]:
+                                    st.markdown(f"**{pdf_data['company_name']}**")
+                                    st.download_button(
+                                        label=f"📄 {pdf_data['company_name']} herunterladen",
+                                        data=pdf_data['pdf_content'],
+                                        file_name=pdf_data['filename'],
+                                        mime="application/pdf",
+                                        key=f"download_pdf_{i}"
+                                    )
+                                    st.caption(f"Datei: {pdf_data['filename']}")
+                                    
+                            if st.button("✅ Einzeldownloads schließen"):
+                                st.session_state.multi_offer_show_individual = False
+                                st.rerun()
 
                     # CRM: Kunde speichern & alle PDFs in Kundenakte ablegen
                     with st.expander(" CRM: Kunde speichern & Angebote in Kundenakte ablegen", expanded=False):
@@ -733,8 +878,62 @@ class MultiCompanyOfferGenerator:
                                     st.rerun()
                         except Exception as e:
                             st.error(f"CRM-Speichern fehlgeschlagen: {e}")
+                    
+                    # Weitere Aktionen nach erfolgreicher PDF-Generierung
+                    st.markdown("---")
+                    st.markdown("### 🎯 Weitere Aktionen")
+                    
+                    action_buttons = st.columns([1, 1, 1, 1])
+                    
+                    with action_buttons[0]:
+                        if st.button("🔄 Neuer Angebotslauf", help="Neuen Multi-Angebotslauf mit anderen Einstellungen starten"):
+                            # Nur die generierten PDFs und Vorschau-Flags zurücksetzen, Kundendaten behalten
+                            st.session_state.multi_offer_show_individual = False
+                            st.session_state.multi_offer_show_preview = False
+                            # Session State für neue Generation vorbereiten
+                            st.success("✅ Bereit für neuen Angebotslauf! Passen Sie die Einstellungen an und generieren Sie erneut.")
+                            st.rerun()
+                    
+                    with action_buttons[1]:
+                        if st.button("📊 Zur Analyse", help="Zurück zur Projektanalyse"):
+                            st.session_state['selected_page_key_sui'] = 'analysis'
+                            st.rerun()
+                    
+                    with action_buttons[2]:
+                        if st.button("🏠 Zur Hauptseite", help="Zurück zur Hauptseite"):
+                            st.session_state['selected_page_key_sui'] = 'home'
+                            st.rerun()
+                            
+                    with action_buttons[3]:
+                        if st.button("🗑️ Alles zurücksetzen", help="Alle Daten löschen und von vorne beginnen"):
+                            # Alle Multi-Offer Session States zurücksetzen
+                            keys_to_reset = [k for k in st.session_state.keys() if k.startswith('multi_offer_')]
+                            for key in keys_to_reset:
+                                del st.session_state[key]
+                            st.success("✅ Alle Daten zurückgesetzt!")
+                            st.rerun()
+                            
                 else:
                     st.error("Keine PDFs konnten erstellt werden!")
+                    
+                    # Fehlerbehebung-Buttons
+                    st.markdown("### 🔧 Fehlerbehebung")
+                    error_cols = st.columns([1, 1, 1])
+                    
+                    with error_cols[0]:
+                        if st.button("🔄 Einstellungen prüfen", help="Konfiguration überprüfen"):
+                            st.session_state.multi_offer_show_preview = True
+                            st.rerun()
+                    
+                    with error_cols[1]:
+                        if st.button("👤 Kundendaten prüfen", help="Kundendaten bearbeiten"):
+                            st.session_state.multi_offer_edit_customer = True
+                            st.rerun()
+                    
+                    with error_cols[2]:
+                        if st.button("🏢 Firmen prüfen", help="Firmenauswahl überprüfen"):
+                            st.session_state.multi_offer_selected_companies = []
+                            st.rerun()
                 
                 status_text.text("Fertig!")
                 
@@ -898,6 +1097,9 @@ class MultiCompanyOfferGenerator:
         if project_data:
             offer_data["project_data"] = project_data
             
+            # Offer-Type basierend auf Projektdaten bestimmen
+            self._set_offer_type(offer_data, project_data, settings)
+            
             # Verbrauchsdaten
             if project_data.get("consumption_data"):
                 offer_data["consumption_data"] = project_data["consumption_data"]
@@ -982,9 +1184,75 @@ class MultiCompanyOfferGenerator:
         
         return offer_data
 
+    def _set_offer_type(self, offer_data: Dict, project_data: Dict, settings: Dict) -> None:
+        """Bestimmt den Offer-Type basierend auf Projektdaten und Einstellungen - vereinfacht für Standard-PDF"""
+        # Info für Benutzer
+        has_heatpump = bool(
+            project_data.get('heatpump_offer') or 
+            project_data.get('heatpump_data') or 
+            project_data.get('building_data') or
+            project_data.get('economics_data') or
+            'heatpump' in str(project_data).lower() or
+            'wärmepumpe' in str(project_data).lower()
+        )
+        
+        has_pv = bool(
+            project_data.get('anlage_kwp') or 
+            project_data.get('calculation_results', {}).get('anlage_kwp') or
+            settings.get('selected_module_id') or
+            settings.get('selected_inverter_id')
+        )
+        
+        # Info-Ausgabe für Benutzer mit Template-Info
+        if has_heatpump and not has_pv:
+            offer_type = "Wärmepumpe"
+            template_info = "🔥 HP-Templates (hp_nt_XX.pdf)"
+        elif has_pv and not has_heatpump:
+            offer_type = "Photovoltaik"  
+            template_info = "☀️ PV-Templates (nt_nt_XX.pdf)"
+        else:
+            offer_type = "Kombination (PV + Wärmepumpe)"
+            template_info = "☀️ PV-Templates (nt_nt_XX.pdf)"
+        
+        st.success(f"📋 **Angebots-Typ:** {offer_type} | 🎯 **Templates:** {template_info}")
+        
+        # Segment-Order für Template-System setzen (wird für HP-Template-Auswahl benötigt)
+        if 'project_data' not in offer_data:
+            offer_data['project_data'] = {}
+        
+        if has_heatpump and not has_pv:
+            offer_data['project_data']['pdf_segment_order'] = ['Wärmepumpe']
+        elif has_pv and not has_heatpump:
+            offer_data['project_data']['pdf_segment_order'] = ['Photovoltaik']
+        else:
+            offer_data['project_data']['pdf_segment_order'] = ['Photovoltaik', 'Wärmepumpe']
+        
+        logging.info(f"Multi-PDF: Angebots-Typ '{offer_type}' - Segment-Order: {offer_data['project_data']['pdf_segment_order']}")
+
     def _generate_company_pdf(self, offer_data: Dict, company: Dict, company_index: int = 0) -> bytes:
         """Generiert PDF für eine spezifische Firma mit firmenspezifischen Produkten und Preisen"""
         try:
+            # Projekt-Daten und Angebots-Typ ermitteln
+            project_data = offer_data.get('project_data', {})
+            settings = st.session_state.get("multi_offer_settings", {})
+            
+            # Wärmepumpen-Erkennung
+            has_heatpump = bool(
+                project_data.get('heatpump_offer') or 
+                project_data.get('heatpump_data') or 
+                project_data.get('building_data') or
+                project_data.get('economics_data') or
+                'heatpump' in str(project_data).lower() or
+                'wärmepumpe' in str(project_data).lower()
+            )
+            
+            has_pv = bool(
+                project_data.get('anlage_kwp') or 
+                project_data.get('calculation_results', {}).get('anlage_kwp') or
+                settings.get('selected_module_id') or
+                settings.get('selected_inverter_id')
+            )
+            
             # PDF-Generierung über generate_offer_pdf mit allen 16 erforderlichen Parametern
             if callable(generate_offer_pdf):
                   # Vorbereitung der Berechnungsergebnisse - ECHTE DATEN verwenden!
@@ -1019,7 +1287,9 @@ class MultiCompanyOfferGenerator:
                     "project_details": offer_data.get("project_details", {}),
                     # Weitere Felder aus offer_data übernehmen
                     "consumption_data": offer_data.get("consumption_data", {}),
-                    "calculation_results": offer_data.get("calculation_results", {})
+                    "calculation_results": offer_data.get("calculation_results", {}),
+                    # Segment-Order für HP-Template-Auswahl setzen
+                    "pdf_segment_order": ['Wärmepumpe'] if (has_heatpump and not has_pv) else ['Photovoltaik']
                 }
                   # Falls ursprüngliche project_data vorhanden, deren Struktur beibehalten
                 if "project_data" in offer_data and offer_data["project_data"]:
@@ -1078,9 +1348,19 @@ class MultiCompanyOfferGenerator:
                     )]
                 
                 # Wichtig: Logo/Firmendaten müssen pro Firma gesetzt werden – kein Global-Fallback der Hauptfirma
-                # Extended-Flag pro Firma bestimmen (oder Master "Alle erweitern")
-                is_extended = bool(st.session_state.get("multi_offer_extend_all", False) or 
-                                   st.session_state.get("multi_offer_company_extended", {}).get(company.get("id", 0), False))
+                # Extended-Flag: Basierend auf Benutzereinstellung für erweiterte PDF-Ausgabe
+                is_extended = bool(pdf_options.get("extended_output", False))
+                
+                if is_extended:
+                    st.info(f"🚀 **Firma {company.get('name', 'Unbekannt')}:** Erweiterte PDF-Ausgabe wird generiert")
+                else:
+                    st.info(f"📄 **Firma {company.get('name', 'Unbekannt')}:** Standard-PDF-Ausgabe wird generiert")
+                
+                # Template-Info anzeigen
+                if has_heatpump and not has_pv:
+                    st.success(f"🔥 **Template-System:** Verwende HP-Templates (hp_nt_XX.pdf) für Wärmepumpen-Angebot")
+                else:
+                    st.info(f"☀️ **Standard-System:** Verwende Legacy-PDF-Generator (ohne Templates)")
 
                 # Company-Dokumente IDs ermitteln, wenn erweitert und Anhänge gewünscht
                 base_settings = st.session_state.get("multi_offer_settings", {})
@@ -1120,13 +1400,8 @@ class MultiCompanyOfferGenerator:
                         "company_document_ids_to_include": company_doc_ids,
                         "selected_charts_for_pdf": charts_to_include if is_extended else [],
                         "include_optional_component_details": pdf_options.get("include_optional_component_details", True),
-                        # Erweiterte Ausgabe ab Seite 7
-                        "append_additional_pages_after_main6": is_extended,
-                        # Templates hinzufügen
-                        "selected_title_image_template": selected_title_image,
-                        "selected_offer_title_template": selected_offer_title,
-                        "selected_cover_letter_template": selected_cover_letter,
-                        "use_templates": True,
+                        # Erweiterte Ausgabe: zusätzliche Seiten ab Seite 8 (wie in normaler PDF-UI)
+                        "append_additional_pages_after_main7": is_extended,
                         # DnD & Advanced Configs
                         **inclusion_extras
                     },
@@ -1136,7 +1411,9 @@ class MultiCompanyOfferGenerator:
                     load_admin_setting_func=load_admin_setting if callable(load_admin_setting) else lambda k, d=None: d,
                     save_admin_setting_func=save_admin_setting if callable(save_admin_setting) else lambda k, v: None,
                     db_list_company_documents_func=list_company_documents if callable(list_company_documents) else lambda cid, dtype=None: [],
-                    active_company_id=company.get("id", 1)
+                    active_company_id=company.get("id", 1),
+                    # Template-System: Für Wärmepumpen aktiviert (HP-Templates), sonst deaktiviert
+                    disable_main_template_combiner=not (has_heatpump and not has_pv)
                 )
                 return pdf_content
             else:

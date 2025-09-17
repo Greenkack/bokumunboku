@@ -8,11 +8,12 @@ import os
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 
 from pdf_template_engine.placeholders import build_dynamic_data
+from calculations import build_project_data
 
 def test_page1_right_aligned_values():
     """Teste die 3 dynamischen Werte auf Seite 1 für rechtsbündige Ausrichtung"""
     
-    project_data = {}
+    project_data = build_project_data({})
     analysis_results = {
         "anlage_kwp": 8.4,
         "annual_pv_production_kwh": 8251.92,

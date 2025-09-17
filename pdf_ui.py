@@ -16,6 +16,7 @@ from datetime import datetime
 from doc_output import _show_pdf_data_status
 from pdf_widgets import render_pdf_structure_manager
 import os
+from calculations import build_project_data
 
 # --- Fallback-Funktionsreferenzen ---
 def _dummy_load_admin_setting_pdf_ui(key, default=None):
@@ -205,7 +206,7 @@ def render_pdf_ui(
 
     minimal_data_ok = True
     if not project_data or not isinstance(project_data, dict):
-        project_data = {}
+        project_data = build_project_data({})
     customer_data_pdf = project_data.get('customer_data', {})
     project_details_pdf = project_data.get('project_details', {})
 
@@ -220,7 +221,7 @@ def render_pdf_ui(
             minimal_data_ok = False
         else:
             # Erzeuge minimales Fake-Photovoltaik Grundgerüst für Validator
-            project_data = {
+            project_data = build_project_data({
                 'customer_data': customer_data_pdf,
                 'project_details': {
                     'module_quantity': 1,
@@ -229,7 +230,7 @@ def render_pdf_ui(
                     'anlage_kwp': 0.1,
                 },
                 'heatpump_offer': hp_offer,
-            }
+            })
             # Minimale Analyseergebnisse synthetisch
             analysis_results = analysis_results or {}
             analysis_results.update({

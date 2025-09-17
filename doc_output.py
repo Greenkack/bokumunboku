@@ -15,6 +15,7 @@ import traceback
 import os
 
 import os  # (bereits vorhanden, hier nur zur Orientierung)
+from calculations import build_project_data
 
 # Dynamische PDF-Overlay-Pfade (Koordinatendateien und PDF-Hintergründe)
 _PDF_UI_BASE_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -1840,7 +1841,7 @@ def render_pdf_ui(
         st.session_state.pdf_generating_lock_v1 = False
 
     if not project_data or not isinstance(project_data, dict): 
-        project_data = {}
+        project_data = build_project_data({})
     customer_data_pdf = project_data.get('customer_data', {})
     
     if not analysis_results or not isinstance(analysis_results, dict):

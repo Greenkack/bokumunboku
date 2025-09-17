@@ -14,6 +14,7 @@ import io
 import re
 from typing import Dict, List, Any
 import traceback
+from calculations import build_project_data
 
 try:
     from tqdm import tqdm
@@ -101,7 +102,7 @@ class MultiCompanyOfferGenerator:
         st.subheader("Schritt 1: Kundendaten aus Projekt übernehmen")
         
         # Versuche Kundendaten aus project_data zu übernehmen
-        project_data = st.session_state.get("project_data", {})
+        project_data = build_project_data(st.session_state.get("project_data", {}))
         customer_data = project_data.get("customer_data", {})
         
         if customer_data:
@@ -278,7 +279,7 @@ class MultiCompanyOfferGenerator:
         customer_data = st.session_state.multi_offer_customer_data
         selected_companies = st.session_state.multi_offer_selected_companies
         settings = st.session_state.multi_offer_settings
-        project_data = st.session_state.get("multi_offer_project_data", {})
+        project_data = build_project_data(st.session_state.get("multi_offer_project_data", {}))
         
         if not customer_data or not selected_companies:
             st.error("Kundendaten oder Firmenauswahl fehlt!")

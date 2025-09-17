@@ -1,0 +1,870 @@
+file,lineno,before,after,reason
+.\.tmp_placeholder_test.py,?,"{
+    ""customer_data"": {""first_name"":""Max"",""last_name"":""Mustermann""},
+    ""project_details"": {
+        ""module_quantity"": 10,
+        ""selected_module_capacity_w"": 400,
+        ""selected_module_name"": ""AlphaSolar 450W"",
+        ""selected_inverter_name"": ""PowerMax 5K"",
+        ""include_storage"": True,
+        ""selected_storage_name"": ""EnergyCell 10kWh"",
+        ""selected_storage_storage_power_kw"": 10.0
+    }
+}","build_project_data({
+    ""customer_data"": {""first_name"":""Max"",""last_name"":""Mustermann""},
+    ""project_details"": {
+        ""module_quantity"": 10,
+        ""selected_module_capacity_w"": 400,
+        ""selected_module_name"": ""AlphaSolar 450W"",
+        ""selected_inverter_name"": ""PowerMax 5K"",
+        ""include_storage"": True,
+        ""selected_storage_name"": ""EnergyCell 10kWh"",
+        ""selected_storage_storage_power_kw"": 10.0
+    }
+})",dict_literal_to_builder
+.\.tmp_placeholder_test.py,1,(kein Import),from calculations import build_project_data,missing_import_added
+.\analysis.py,?,"st.session_state.get('project_data', {})","build_project_data(st.session_state.get('project_data', {}))",call_wrapped_to_builder
+.\analysis.py,?,"st.session_state.get(""project_data"", {})","build_project_data(st.session_state.get(""project_data"", {}))",call_wrapped_to_builder
+.\analysis.py,?,"st.session_state.get(""project_data"", {})","build_project_data(st.session_state.get(""project_data"", {}))",call_wrapped_to_builder
+.\analysis.py,?,"st.session_state.get(""project_data"", {})","build_project_data(st.session_state.get(""project_data"", {}))",call_wrapped_to_builder
+.\analysis.py,?,"st.session_state.get(""project_data"", {})","build_project_data(st.session_state.get(""project_data"", {}))",call_wrapped_to_builder
+.\analysis.py,1,(kein Import),from calculations import build_project_data,missing_import_added
+.\calculations.py,?,"{
+    ""anlage_kwp"": 10.0,
+    ""electricity_price_eur_per_kwh"": 0.30,
+    ""annual_consumption_kwh"": 4000,
+    ""storage_kwh"": 10.0,
+    ""location"": {""latitude"": 50.0, ""longitude"": 10.0},
+}","build_project_data({
+    ""anlage_kwp"": 10.0,
+    ""electricity_price_eur_per_kwh"": 0.30,
+    ""annual_consumption_kwh"": 4000,
+    ""storage_kwh"": 10.0,
+    ""location"": {""latitude"": 50.0, ""longitude"": 10.0},
+})",dict_literal_to_builder
+.\calculations.py,1,(kein Import),from calculations import build_project_data,missing_import_added
+.\central_pdf_system.py,?,"kwargs.get('project_data', {})","build_project_data(kwargs.get('project_data', {}))",call_wrapped_to_builder
+.\central_pdf_system.py,?,"kwargs.get('project_data', {})","build_project_data(kwargs.get('project_data', {}))",call_wrapped_to_builder
+.\central_pdf_system.py,?,"kwargs.get('project_data', {})","build_project_data(kwargs.get('project_data', {}))",call_wrapped_to_builder
+.\central_pdf_system.py,?,"st.session_state.get('project_data', {})","build_project_data(st.session_state.get('project_data', {}))",call_wrapped_to_builder
+.\central_pdf_system.py,1,(kein Import),from calculations import build_project_data,missing_import_added
+.\debug_brand_extraction.py,?,"{
+    ""customer_data"": {
+        ""first_name"": ""Max"",
+        ""last_name"": ""Mustermann""
+    },
+    ""project_details"": {},
+    ""selected_products"": {
+        ""module"": {
+            ""product_id"": 1,
+            ""brand_name"": ""Huawei"",
+            ""product_name"": ""SUN2000-8KTL-M1""
+        },
+        ""inverter"": {
+            ""product_id"": 2,
+            ""brand_name"": ""GoodWe"",
+            ""product_name"": ""GW8K-ET""
+        },
+        ""storage"": {
+            ""product_id"": 3,
+            ""brand_name"": ""BYD"",
+            ""product_name"": ""Battery-Box Premium HVM""
+        }
+    }
+}","build_project_data({
+    ""customer_data"": {
+        ""first_name"": ""Max"",
+        ""last_name"": ""Mustermann""
+    },
+    ""project_details"": {},
+    ""selected_products"": {
+        ""module"": {
+            ""product_id"": 1,
+            ""brand_name"": ""Huawei"",
+            ""product_name"": ""SUN2000-8KTL-M1""
+        },
+        ""inverter"": {
+            ""product_id"": 2,
+            ""brand_name"": ""GoodWe"",
+            ""product_name"": ""GW8K-ET""
+        },
+        ""storage"": {
+            ""product_id"": 3,
+            ""brand_name"": ""BYD"",
+            ""product_name"": ""Battery-Box Premium HVM""
+        }
+    }
+})",dict_literal_to_builder
+.\debug_brand_extraction.py,1,(kein Import),from calculations import build_project_data,missing_import_added
+.\debug_logo_pdf.py,?,"{
+    ""customer_data"": {
+        ""first_name"": ""Max"",
+        ""last_name"": ""Mustermann""
+    },
+    ""project_details"": {},
+    ""selected_products"": {
+        ""module"": {
+            ""product_id"": 1,
+            ""brand_name"": ""Huawei"",
+            ""product_name"": ""SUN2000-8KTL-M1""
+        },
+        ""inverter"": {
+            ""product_id"": 2,
+            ""brand_name"": ""GoodWe"",
+            ""product_name"": ""GW8K-ET""
+        },
+        ""storage"": {
+            ""product_id"": 3,
+            ""brand_name"": ""BYD"",
+            ""product_name"": ""Battery-Box Premium HVM""
+        }
+    }
+}","build_project_data({
+    ""customer_data"": {
+        ""first_name"": ""Max"",
+        ""last_name"": ""Mustermann""
+    },
+    ""project_details"": {},
+    ""selected_products"": {
+        ""module"": {
+            ""product_id"": 1,
+            ""brand_name"": ""Huawei"",
+            ""product_name"": ""SUN2000-8KTL-M1""
+        },
+        ""inverter"": {
+            ""product_id"": 2,
+            ""brand_name"": ""GoodWe"",
+            ""product_name"": ""GW8K-ET""
+        },
+        ""storage"": {
+            ""product_id"": 3,
+            ""brand_name"": ""BYD"",
+            ""product_name"": ""Battery-Box Premium HVM""
+        }
+    }
+})",dict_literal_to_builder
+.\debug_logo_pdf.py,1,(kein Import),from calculations import build_project_data,missing_import_added
+.\debug_logo_rendering.py,?,"{
+    ""customer_data"": {
+        ""first_name"": ""Max"",
+        ""last_name"": ""Mustermann""
+    },
+    ""selected_products"": {
+        ""module"": {""brand_name"": ""Huawei"", ""product_name"": ""Test Module""},
+        ""inverter"": {""brand_name"": ""GoodWe"", ""product_name"": ""Test Inverter""}, 
+        ""storage"": {""brand_name"": ""BYD"", ""product_name"": ""Test Storage""}
+    }
+}","build_project_data({
+    ""customer_data"": {
+        ""first_name"": ""Max"",
+        ""last_name"": ""Mustermann""
+    },
+    ""selected_products"": {
+        ""module"": {""brand_name"": ""Huawei"", ""product_name"": ""Test Module""},
+        ""inverter"": {""brand_name"": ""GoodWe"", ""product_name"": ""Test Inverter""}, 
+        ""storage"": {""brand_name"": ""BYD"", ""product_name"": ""Test Storage""}
+    }
+})",dict_literal_to_builder
+.\debug_logo_rendering.py,1,(kein Import),from calculations import build_project_data,missing_import_added
+.\debug_page3_check.py,?,"{
+    ""einspeise_art"": ""parts"",   # Teileinspeisung
+    # optional: ""anlage_kwp"": 9.5,
+}","build_project_data({
+    ""einspeise_art"": ""parts"",   # Teileinspeisung
+    # optional: ""anlage_kwp"": 9.5,
+})",dict_literal_to_builder
+.\debug_page3_check.py,1,(kein Import),from calculations import build_project_data,missing_import_added
+.\doc_output.py,?,{},build_project_data({}),dict_literal_to_builder
+.\doc_output.py,1,(kein Import),from calculations import build_project_data,missing_import_added
+.\live_preview_helpers.py,?,"st.session_state.get('project_data', {})","build_project_data(st.session_state.get('project_data', {}))",call_wrapped_to_builder
+.\live_preview_helpers.py,1,(kein Import),from calculations import build_project_data,missing_import_added
+.\multi_offer_generator.py,?,"st.session_state.get(""project_data"", {})","build_project_data(st.session_state.get(""project_data"", {}))",call_wrapped_to_builder
+.\multi_offer_generator.py,?,"st.session_state.get(""multi_offer_project_data"", {})","build_project_data(st.session_state.get(""multi_offer_project_data"", {}))",call_wrapped_to_builder
+.\multi_offer_generator.py,1,(kein Import),from calculations import build_project_data,missing_import_added
+.\multi_offer_generator_new.py,?,"st.session_state.get(""project_data"", {})","build_project_data(st.session_state.get(""project_data"", {}))",call_wrapped_to_builder
+.\multi_offer_generator_new.py,?,"st.session_state.get(""multi_offer_project_data"", {})","build_project_data(st.session_state.get(""multi_offer_project_data"", {}))",call_wrapped_to_builder
+.\multi_offer_generator_new.py,1,(kein Import),from calculations import build_project_data,missing_import_added
+.\multi_offer_generator_old.py,?,self._prepare_project_data_for_pdf(company_id),build_project_data(self._prepare_project_data_for_pdf(company_id)),call_wrapped_to_builder
+.\multi_offer_generator_old.py,?,"st.session_state.get(""project_data"", {})","build_project_data(st.session_state.get(""project_data"", {}))",call_wrapped_to_builder
+.\multi_offer_generator_old.py,?,self._prepare_project_data_for_pdf(company_id),build_project_data(self._prepare_project_data_for_pdf(company_id)),call_wrapped_to_builder
+.\multi_offer_generator_old.py,1,(kein Import),from calculations import build_project_data,missing_import_added
+.\pdf_erstellen_komplett.py,?,_read_json(project_json),build_project_data(_read_json(project_json)),call_wrapped_to_builder
+.\pdf_erstellen_komplett.py,?,"st.session_state.get(""project_data"", {})","build_project_data(st.session_state.get(""project_data"", {}))",call_wrapped_to_builder
+.\pdf_erstellen_komplett.py,?,"json.loads(pj.read().decode(""utf-8""))","build_project_data(json.loads(pj.read().decode(""utf-8"")))",call_wrapped_to_builder
+.\pdf_erstellen_komplett.py,1,(kein Import),from calculations import build_project_data,missing_import_added
+.\pdf_generator.py,?,dict(project_data or {}),build_project_data(dict(project_data or {})),call_wrapped_to_builder
+.\pdf_generator.py,1,(kein Import),from calculations import build_project_data,missing_import_added
+.\pdf_ui.py,?,{},build_project_data({}),dict_literal_to_builder
+.\pdf_ui.py,?,"{
+    'customer_data': customer_data_pdf,
+    'project_details': {
+        'module_quantity': 1,
+        'selected_module_name': 'Placeholder Modul',
+        'selected_inverter_name': 'Placeholder WR',
+        'anlage_kwp': 0.1,
+    },
+    'heatpump_offer': hp_offer,
+}","build_project_data({
+    'customer_data': customer_data_pdf,
+    'project_details': {
+        'module_quantity': 1,
+        'selected_module_name': 'Placeholder Modul',
+        'selected_inverter_name': 'Placeholder WR',
+        'anlage_kwp': 0.1,
+    },
+    'heatpump_offer': hp_offer,
+})",dict_literal_to_builder
+.\pdf_ui.py,1,(kein Import),from calculations import build_project_data,missing_import_added
+.\simple_logo_test.py,?,"{
+    ""customer_data"": {
+        ""first_name"": ""Max"",
+        ""last_name"": ""Mustermann""
+    },
+    ""project_details"": {},
+    ""selected_products"": {
+        ""module"": {
+            ""product_id"": 1,
+            ""brand_name"": ""Huawei"",  # Hat ein Logo
+            ""product_name"": ""SUN2000-8KTL-M1""
+        },
+        ""inverter"": {
+            ""product_id"": 2,
+            ""brand_name"": ""GoodWe"",  # Hat ein Logo  
+            ""product_name"": ""GW8K-ET""
+        },
+        ""storage"": {
+            ""product_id"": 3,
+            ""brand_name"": ""BYD"",  # Hat ein Logo
+            ""product_name"": ""Battery-Box Premium HVM""
+        }
+    }
+}","build_project_data({
+    ""customer_data"": {
+        ""first_name"": ""Max"",
+        ""last_name"": ""Mustermann""
+    },
+    ""project_details"": {},
+    ""selected_products"": {
+        ""module"": {
+            ""product_id"": 1,
+            ""brand_name"": ""Huawei"",  # Hat ein Logo
+            ""product_name"": ""SUN2000-8KTL-M1""
+        },
+        ""inverter"": {
+            ""product_id"": 2,
+            ""brand_name"": ""GoodWe"",  # Hat ein Logo  
+            ""product_name"": ""GW8K-ET""
+        },
+        ""storage"": {
+            ""product_id"": 3,
+            ""brand_name"": ""BYD"",  # Hat ein Logo
+            ""product_name"": ""Battery-Box Premium HVM""
+        }
+    }
+})",dict_literal_to_builder
+.\simple_logo_test.py,1,(kein Import),from calculations import build_project_data,missing_import_added
+.\notwendig oder nicht\zu implementieren\kalkulationen.py,?,,,"PARSE_ERROR:Syntax Error @ 1:1.
+tokenizer error: '`' is not a valid character in this position"
+.\tests\test_build_dynamic_data.py,?,"{
+    'customer_data': {'first_name': 'A', 'last_name': 'B'},
+    'project_details': {
+        'module_quantity': 20,
+        'selected_module_name': 'Neostar 2S+ 455W',
+        'selected_inverter_name': 'Sun2000 10KTL-M1 10 kW Wechselrichter',
+        'selected_storage_name': 'ECS4100 -H3 12,09 kWh Stromspeicher',
+        'include_storage': True,
+    },
+}","build_project_data({
+    'customer_data': {'first_name': 'A', 'last_name': 'B'},
+    'project_details': {
+        'module_quantity': 20,
+        'selected_module_name': 'Neostar 2S+ 455W',
+        'selected_inverter_name': 'Sun2000 10KTL-M1 10 kW Wechselrichter',
+        'selected_storage_name': 'ECS4100 -H3 12,09 kWh Stromspeicher',
+        'include_storage': True,
+    },
+})",dict_literal_to_builder
+.\tests\test_build_dynamic_data.py,1,(kein Import),from calculations import build_project_data,missing_import_added
+.\tests\test_final_pdf_logos.py,?,"{
+    ""customer_data"": {
+        ""first_name"": ""Max"",
+        ""last_name"": ""Mustermann"",
+        ""address"": ""Musterstraße 1"",
+        ""zip_code"": ""12345"",
+        ""city"": ""Musterstadt"",
+        ""email"": ""max@beispiel.de""
+    },
+    ""project_details"": {
+        ""roof_area"": 50,
+        ""roof_orientation"": ""Süd""
+    },
+    ""selected_products"": {
+        ""module"": {
+            ""product_id"": 1,
+            ""brand_name"": ""Huawei"",
+            ""product_name"": ""SUN2000-8KTL-M1""
+        },
+        ""inverter"": {
+            ""product_id"": 2,
+            ""brand_name"": ""GoodWe"", 
+            ""product_name"": ""GW8K-ET""
+        },
+        ""storage"": {
+            ""product_id"": 3,
+            ""brand_name"": ""BYD"",
+            ""product_name"": ""Battery-Box Premium HVM""
+        }
+    }
+}","build_project_data({
+    ""customer_data"": {
+        ""first_name"": ""Max"",
+        ""last_name"": ""Mustermann"",
+        ""address"": ""Musterstraße 1"",
+        ""zip_code"": ""12345"",
+        ""city"": ""Musterstadt"",
+        ""email"": ""max@beispiel.de""
+    },
+    ""project_details"": {
+        ""roof_area"": 50,
+        ""roof_orientation"": ""Süd""
+    },
+    ""selected_products"": {
+        ""module"": {
+            ""product_id"": 1,
+            ""brand_name"": ""Huawei"",
+            ""product_name"": ""SUN2000-8KTL-M1""
+        },
+        ""inverter"": {
+            ""product_id"": 2,
+            ""brand_name"": ""GoodWe"", 
+            ""product_name"": ""GW8K-ET""
+        },
+        ""storage"": {
+            ""product_id"": 3,
+            ""brand_name"": ""BYD"",
+            ""product_name"": ""Battery-Box Premium HVM""
+        }
+    }
+})",dict_literal_to_builder
+.\tests\test_final_pdf_logos.py,1,(kein Import),from calculations import build_project_data,missing_import_added
+.\tests\test_main6_render.py,?,"{
+    'customer_data': {
+        'salutation': 'Herr',
+        'title': '',
+        'first_name': 'Max',
+        'last_name': 'Mustermann',
+        'address': 'Musterweg',
+        'house_number': '12',
+        'zip_code': '12345',
+        'city': 'Musterstadt',
+        'phone_mobile': '+491234567',
+        'email': 'max@example.com',
+    },
+    'project_details': {
+        'module_quantity': 20,
+        'selected_module_capacity_w': 420,
+        'module_manufacturer': 'JA Solar',
+        'module_model': 'JAM54S31-420/MR',
+        'module_cell_technology': 'Monokristallin N-Type',
+        'module_structure': 'Glas-Folie',
+        'module_cell_type': '108 Halbzellen',
+        'module_version': 'Black Frame',
+        'module_guarantee_combined': '25 Jahre Produktgarantie | 30 Jahre Leistungsgarantie',
+        'selected_inverter_name': 'Huawei SUN2000-8KTL-M1',
+        'selected_inverter_quantity': 1,
+        'selected_inverter_power_kw': 8,
+        'selected_storage_name': 'Huawei LUNA2000-7-S1-7kWh Stromspeicher',
+        'include_storage': True,
+        # Seite 3: Stromkosten (Monat) und Preissteigerung
+        'stromkosten_haushalt_euro_monat': 150,
+        'stromkosten_heizung_euro_monat': 50,
+        'electricity_price_increase_annual_percent': 5,
+    },
+}","build_project_data({
+    'customer_data': {
+        'salutation': 'Herr',
+        'title': '',
+        'first_name': 'Max',
+        'last_name': 'Mustermann',
+        'address': 'Musterweg',
+        'house_number': '12',
+        'zip_code': '12345',
+        'city': 'Musterstadt',
+        'phone_mobile': '+491234567',
+        'email': 'max@example.com',
+    },
+    'project_details': {
+        'module_quantity': 20,
+        'selected_module_capacity_w': 420,
+        'module_manufacturer': 'JA Solar',
+        'module_model': 'JAM54S31-420/MR',
+        'module_cell_technology': 'Monokristallin N-Type',
+        'module_structure': 'Glas-Folie',
+        'module_cell_type': '108 Halbzellen',
+        'module_version': 'Black Frame',
+        'module_guarantee_combined': '25 Jahre Produktgarantie | 30 Jahre Leistungsgarantie',
+        'selected_inverter_name': 'Huawei SUN2000-8KTL-M1',
+        'selected_inverter_quantity': 1,
+        'selected_inverter_power_kw': 8,
+        'selected_storage_name': 'Huawei LUNA2000-7-S1-7kWh Stromspeicher',
+        'include_storage': True,
+        # Seite 3: Stromkosten (Monat) und Preissteigerung
+        'stromkosten_haushalt_euro_monat': 150,
+        'stromkosten_heizung_euro_monat': 50,
+        'electricity_price_increase_annual_percent': 5,
+    },
+})",dict_literal_to_builder
+.\tests\test_main6_render.py,1,(kein Import),from calculations import build_project_data,missing_import_added
+.\tests\test_main_pdf.py,?,"{
+    'customer_data': {
+        'salutation': 'Herr',
+        'first_name': 'Max',
+        'last_name': 'Mustermann',
+        'address': 'Musterstraße',
+        'house_number': '1',
+        'zip_code': '12345',
+        'city': 'Musterstadt',
+        'email': 'max@example.com',
+        'phone_mobile': '0151 2345678',
+    },
+    'project_details': {
+        'module_quantity': 20,
+        'selected_module_capacity_w': 420,
+        'selected_module_name': 'PV-Modul 420W',
+        'selected_inverter_name': 'WR 5kW',
+        'selected_storage_capacity_kwh': 5.1,
+    }
+}","build_project_data({
+    'customer_data': {
+        'salutation': 'Herr',
+        'first_name': 'Max',
+        'last_name': 'Mustermann',
+        'address': 'Musterstraße',
+        'house_number': '1',
+        'zip_code': '12345',
+        'city': 'Musterstadt',
+        'email': 'max@example.com',
+        'phone_mobile': '0151 2345678',
+    },
+    'project_details': {
+        'module_quantity': 20,
+        'selected_module_capacity_w': 420,
+        'selected_module_name': 'PV-Modul 420W',
+        'selected_inverter_name': 'WR 5kW',
+        'selected_storage_capacity_kwh': 5.1,
+    }
+})",dict_literal_to_builder
+.\tests\test_main_pdf.py,1,(kein Import),from calculations import build_project_data,missing_import_added
+.\tests\test_numbering.py,?,{},build_project_data({}),dict_literal_to_builder
+.\tests\test_numbering.py,1,(kein Import),from calculations import build_project_data,missing_import_added
+.\tests\test_overlay_footer.py,?,{},build_project_data({}),dict_literal_to_builder
+.\tests\test_overlay_footer.py,1,(kein Import),from calculations import build_project_data,missing_import_added
+.\tests\test_page1_alignment.py,?,{},build_project_data({}),dict_literal_to_builder
+.\tests\test_page1_alignment.py,1,(kein Import),from calculations import build_project_data,missing_import_added
+.\tests\test_page3_values.py,?,"{""einspeise_art"": ""parts""}","build_project_data({""einspeise_art"": ""parts""})",dict_literal_to_builder
+.\tests\test_page3_values.py,1,(kein Import),from calculations import build_project_data,missing_import_added
+.\tests\test_page4_images.py,?,"{
+  'customer_data':{'first_name':'Test','last_name':'Kunde'},
+  'project_details': {
+    'module_quantity': 12,
+    'selected_module_capacity_w': 460,
+    'module_cell_technology': 'N-Type TOPCon Halfcut Bifazial',
+    'module_structure': 'Glas-Glas Module',
+    'module_cell_type': 'Monokristalline',
+    'module_version': 'All-Black',
+    'module_guarantee_combined': '30 Jahre Produktgarantie',
+    # Bild-Overrides (wir akzeptieren Base64 direkt)
+    'module_image_b64': png_b64,
+    'inverter_image_b64': png_b64,
+    'storage_image_b64': png_b64,
+    # Modellnamen optional (DB wird u. U. nicht benötigt, da wir Overrides setzen)
+    'selected_inverter_name':'Sun2000 10KTL-M1 10 kW',
+    'selected_inverter_power_kw':10,
+    'selected_inverter_quantity':1,
+    'selected_storage_name':'LUNA2000-7-S1-7kWh Stromspeicher',
+    'selected_storage_storage_power_kw':7.0,
+    'selected_storage_power_kw':7.0,
+  }
+}","build_project_data({
+  'customer_data':{'first_name':'Test','last_name':'Kunde'},
+  'project_details': {
+    'module_quantity': 12,
+    'selected_module_capacity_w': 460,
+    'module_cell_technology': 'N-Type TOPCon Halfcut Bifazial',
+    'module_structure': 'Glas-Glas Module',
+    'module_cell_type': 'Monokristalline',
+    'module_version': 'All-Black',
+    'module_guarantee_combined': '30 Jahre Produktgarantie',
+    # Bild-Overrides (wir akzeptieren Base64 direkt)
+    'module_image_b64': png_b64,
+    'inverter_image_b64': png_b64,
+    'storage_image_b64': png_b64,
+    # Modellnamen optional (DB wird u. U. nicht benötigt, da wir Overrides setzen)
+    'selected_inverter_name':'Sun2000 10KTL-M1 10 kW',
+    'selected_inverter_power_kw':10,
+    'selected_inverter_quantity':1,
+    'selected_storage_name':'LUNA2000-7-S1-7kWh Stromspeicher',
+    'selected_storage_storage_power_kw':7.0,
+    'selected_storage_power_kw':7.0,
+  }
+})",dict_literal_to_builder
+.\tests\test_page4_images.py,1,(kein Import),from calculations import build_project_data,missing_import_added
+.\tests\test_pdf_logos.py,?,"{
+    ""customer_data"": {
+        ""first_name"": ""Max"",
+        ""last_name"": ""Mustermann"",
+        ""address"": ""Musterstraße 1"",
+        ""zip_code"": ""12345"",
+        ""city"": ""Musterstadt"",
+        ""email"": ""max@beispiel.de""
+    },
+    ""project_details"": {
+        ""roof_area"": 50,
+        ""roof_orientation"": ""Süd""
+    },
+    ""selected_products"": {
+        ""module"": {
+            ""product_id"": 1,
+            ""brand_name"": ""Huawei"",
+            ""product_name"": ""SUN2000-8KTL-M1""
+        },
+        ""inverter"": {
+            ""product_id"": 2,
+            ""brand_name"": ""GoodWe"", 
+            ""product_name"": ""GW8K-ET""
+        },
+        ""storage"": {
+            ""product_id"": 3,
+            ""brand_name"": ""BYD"",
+            ""product_name"": ""Battery-Box Premium HVM""
+        }
+    }
+}","build_project_data({
+    ""customer_data"": {
+        ""first_name"": ""Max"",
+        ""last_name"": ""Mustermann"",
+        ""address"": ""Musterstraße 1"",
+        ""zip_code"": ""12345"",
+        ""city"": ""Musterstadt"",
+        ""email"": ""max@beispiel.de""
+    },
+    ""project_details"": {
+        ""roof_area"": 50,
+        ""roof_orientation"": ""Süd""
+    },
+    ""selected_products"": {
+        ""module"": {
+            ""product_id"": 1,
+            ""brand_name"": ""Huawei"",
+            ""product_name"": ""SUN2000-8KTL-M1""
+        },
+        ""inverter"": {
+            ""product_id"": 2,
+            ""brand_name"": ""GoodWe"", 
+            ""product_name"": ""GW8K-ET""
+        },
+        ""storage"": {
+            ""product_id"": 3,
+            ""brand_name"": ""BYD"",
+            ""product_name"": ""Battery-Box Premium HVM""
+        }
+    }
+})",dict_literal_to_builder
+.\tests\test_pdf_logos.py,1,(kein Import),from calculations import build_project_data,missing_import_added
+.\tests\test_product_images.py,?,"{
+    ""project_details"": {
+        ""selected_module_name"": ""BetaSun 400W"",           # Hat jetzt PNG-Bild
+        ""selected_inverter_name"": ""PowerMax 5K"",          # Hat kein Bild (falls nicht aktualisiert)
+        ""selected_storage_name"": ""EnergyCell 10kWh"",      # Hat kein Bild (falls nicht aktualisiert)
+        ""module_quantity"": 20,
+        ""installation_location"": ""Test-Location"",
+        ""customer_name"": ""Test Kunde"",
+        ""projekt_name"": ""Test Projekt""
+    }
+}","build_project_data({
+    ""project_details"": {
+        ""selected_module_name"": ""BetaSun 400W"",           # Hat jetzt PNG-Bild
+        ""selected_inverter_name"": ""PowerMax 5K"",          # Hat kein Bild (falls nicht aktualisiert)
+        ""selected_storage_name"": ""EnergyCell 10kWh"",      # Hat kein Bild (falls nicht aktualisiert)
+        ""module_quantity"": 20,
+        ""installation_location"": ""Test-Location"",
+        ""customer_name"": ""Test Kunde"",
+        ""projekt_name"": ""Test Projekt""
+    }
+})",dict_literal_to_builder
+.\tests\test_product_images.py,1,(kein Import),from calculations import build_project_data,missing_import_added
+.\tests\test_right_alignment.py,?,"{""einspeise_art"": ""parts""}","build_project_data({""einspeise_art"": ""parts""})",dict_literal_to_builder
+.\tests\test_right_alignment.py,1,(kein Import),from calculations import build_project_data,missing_import_added
+.\tests\test_roof_data.py,?,"{
+    ""project_details"": {
+        ""roof_orientation"": ""Südwest"",
+        ""roof_inclination_deg"": 45
+    }
+}","build_project_data({
+    ""project_details"": {
+        ""roof_orientation"": ""Südwest"",
+        ""roof_inclination_deg"": 45
+    }
+})",dict_literal_to_builder
+.\tests\test_roof_data.py,?,"{
+    ""project_details"": {
+        ""roof_orientation"": ""Ost"",
+        ""roof_inclination_deg"": 30
+    }
+}","build_project_data({
+    ""project_details"": {
+        ""roof_orientation"": ""Ost"",
+        ""roof_inclination_deg"": 30
+    }
+})",dict_literal_to_builder
+.\tests\test_roof_data.py,?,{},build_project_data({}),dict_literal_to_builder
+.\tests\test_roof_data.py,1,(kein Import),from calculations import build_project_data,missing_import_added
+.\tests\test_section_titles_logos.py,?,"{
+    ""customer_data"": {
+        ""first_name"": ""Max"",
+        ""last_name"": ""Mustermann""
+    },
+    ""project_details"": {
+        ""module_quantity"": 20,
+        ""selected_inverter_power_kw"": 10.5,  # 10,5 kW = 10.500 W
+        ""selected_storage_capacity_kwh"": 15.6  # 15,6 kWh
+    },
+    ""selected_products"": {
+        ""module"": {
+            ""product_id"": 1,
+            ""brand_name"": ""Huawei"",
+            ""product_name"": ""SUN2000-8KTL-M1""
+        },
+        ""inverter"": {
+            ""product_id"": 2,
+            ""brand_name"": ""GoodWe"",
+            ""product_name"": ""GW8K-ET""
+        },
+        ""storage"": {
+            ""product_id"": 3,
+            ""brand_name"": ""BYD"",
+            ""product_name"": ""Battery-Box Premium HVM""
+        }
+    }
+}","build_project_data({
+    ""customer_data"": {
+        ""first_name"": ""Max"",
+        ""last_name"": ""Mustermann""
+    },
+    ""project_details"": {
+        ""module_quantity"": 20,
+        ""selected_inverter_power_kw"": 10.5,  # 10,5 kW = 10.500 W
+        ""selected_storage_capacity_kwh"": 15.6  # 15,6 kWh
+    },
+    ""selected_products"": {
+        ""module"": {
+            ""product_id"": 1,
+            ""brand_name"": ""Huawei"",
+            ""product_name"": ""SUN2000-8KTL-M1""
+        },
+        ""inverter"": {
+            ""product_id"": 2,
+            ""brand_name"": ""GoodWe"",
+            ""product_name"": ""GW8K-ET""
+        },
+        ""storage"": {
+            ""product_id"": 3,
+            ""brand_name"": ""BYD"",
+            ""product_name"": ""Battery-Box Premium HVM""
+        }
+    }
+})",dict_literal_to_builder
+.\tests\test_section_titles_logos.py,1,(kein Import),from calculations import build_project_data,missing_import_added
+.\tools\debug_dynamic_page3.py,?,"{
+    ""einspeise_art"": ""parts"",
+    ""annual_consumption_kwh"": 6000,
+}","build_project_data({
+    ""einspeise_art"": ""parts"",
+    ""annual_consumption_kwh"": 6000,
+})",dict_literal_to_builder
+.\tools\debug_dynamic_page3.py,1,(kein Import),from calculations import build_project_data,missing_import_added
+.\tools\import_module_attributes_from_pdf.py,?,,,"PARSE_ERROR:Syntax Error @ 1:1.
+tokenizer error: no matching outer block for dedent
+
+# tools/import_module_attributes_from_pdf.py
+^"
+.\tools\test_build_dynamic_data.py,?,"{
+    'customer_data': {'first_name': 'A', 'last_name': 'B'},
+    'project_details': {
+        'module_quantity': 20,
+        'selected_module_name': 'Neostar 2S+ 455W',
+        'selected_inverter_name': 'Sun2000 10KTL-M1 10 kW Wechselrichter',
+        'selected_storage_name': 'ECS4100 -H3 12,09 kWh Stromspeicher',
+        'include_storage': True,
+    },
+}","build_project_data({
+    'customer_data': {'first_name': 'A', 'last_name': 'B'},
+    'project_details': {
+        'module_quantity': 20,
+        'selected_module_name': 'Neostar 2S+ 455W',
+        'selected_inverter_name': 'Sun2000 10KTL-M1 10 kW Wechselrichter',
+        'selected_storage_name': 'ECS4100 -H3 12,09 kWh Stromspeicher',
+        'include_storage': True,
+    },
+})",dict_literal_to_builder
+.\tools\test_build_dynamic_data.py,1,(kein Import),from calculations import build_project_data,missing_import_added
+.\tools\test_main6_render.py,?,"{
+    'customer_data': {
+        'salutation': 'Herr',
+        'title': '',
+        'first_name': 'Max',
+        'last_name': 'Mustermann',
+        'address': 'Musterweg',
+        'house_number': '12',
+        'zip_code': '12345',
+        'city': 'Musterstadt',
+        'phone_mobile': '+491234567',
+        'email': 'max@example.com',
+    },
+    'project_details': {
+        'module_quantity': 20,
+        'selected_module_capacity_w': 420,
+        'module_manufacturer': 'JA Solar',
+        'module_model': 'JAM54S31-420/MR',
+        'module_cell_technology': 'Monokristallin N-Type',
+        'module_structure': 'Glas-Folie',
+        'module_cell_type': '108 Halbzellen',
+        'module_version': 'Black Frame',
+        'module_guarantee_combined': '25 Jahre Produktgarantie | 30 Jahre Leistungsgarantie',
+        'selected_inverter_name': 'Huawei SUN2000-8KTL-M1',
+        'selected_inverter_quantity': 1,
+        'selected_inverter_power_kw': 8,
+        'selected_storage_name': 'Huawei LUNA2000-7-S1-7kWh Stromspeicher',
+        'include_storage': True,
+        # Seite 3: Stromkosten (Monat) und Preissteigerung
+        'stromkosten_haushalt_euro_monat': 150,
+        'stromkosten_heizung_euro_monat': 50,
+        'electricity_price_increase_annual_percent': 5,
+    },
+}","build_project_data({
+    'customer_data': {
+        'salutation': 'Herr',
+        'title': '',
+        'first_name': 'Max',
+        'last_name': 'Mustermann',
+        'address': 'Musterweg',
+        'house_number': '12',
+        'zip_code': '12345',
+        'city': 'Musterstadt',
+        'phone_mobile': '+491234567',
+        'email': 'max@example.com',
+    },
+    'project_details': {
+        'module_quantity': 20,
+        'selected_module_capacity_w': 420,
+        'module_manufacturer': 'JA Solar',
+        'module_model': 'JAM54S31-420/MR',
+        'module_cell_technology': 'Monokristallin N-Type',
+        'module_structure': 'Glas-Folie',
+        'module_cell_type': '108 Halbzellen',
+        'module_version': 'Black Frame',
+        'module_guarantee_combined': '25 Jahre Produktgarantie | 30 Jahre Leistungsgarantie',
+        'selected_inverter_name': 'Huawei SUN2000-8KTL-M1',
+        'selected_inverter_quantity': 1,
+        'selected_inverter_power_kw': 8,
+        'selected_storage_name': 'Huawei LUNA2000-7-S1-7kWh Stromspeicher',
+        'include_storage': True,
+        # Seite 3: Stromkosten (Monat) und Preissteigerung
+        'stromkosten_haushalt_euro_monat': 150,
+        'stromkosten_heizung_euro_monat': 50,
+        'electricity_price_increase_annual_percent': 5,
+    },
+})",dict_literal_to_builder
+.\tools\test_main6_render.py,1,(kein Import),from calculations import build_project_data,missing_import_added
+.\tools\test_main_pdf.py,?,"{
+    'customer_data': {
+        'salutation': 'Herr',
+        'first_name': 'Max',
+        'last_name': 'Mustermann',
+        'address': 'Musterstraße',
+        'house_number': '1',
+        'zip_code': '12345',
+        'city': 'Musterstadt',
+        'email': 'max@example.com',
+        'phone_mobile': '0151 2345678',
+    },
+    'project_details': {
+        'module_quantity': 20,
+        'selected_module_capacity_w': 420,
+        'selected_module_name': 'PV-Modul 420W',
+        'selected_inverter_name': 'WR 5kW',
+        'selected_storage_capacity_kwh': 5.1,
+    }
+}","build_project_data({
+    'customer_data': {
+        'salutation': 'Herr',
+        'first_name': 'Max',
+        'last_name': 'Mustermann',
+        'address': 'Musterstraße',
+        'house_number': '1',
+        'zip_code': '12345',
+        'city': 'Musterstadt',
+        'email': 'max@example.com',
+        'phone_mobile': '0151 2345678',
+    },
+    'project_details': {
+        'module_quantity': 20,
+        'selected_module_capacity_w': 420,
+        'selected_module_name': 'PV-Modul 420W',
+        'selected_inverter_name': 'WR 5kW',
+        'selected_storage_capacity_kwh': 5.1,
+    }
+})",dict_literal_to_builder
+.\tools\test_main_pdf.py,1,(kein Import),from calculations import build_project_data,missing_import_added
+.\tools\test_numbering.py,?,{},build_project_data({}),dict_literal_to_builder
+.\tools\test_numbering.py,1,(kein Import),from calculations import build_project_data,missing_import_added
+.\tools\test_overlay_footer.py,?,{},build_project_data({}),dict_literal_to_builder
+.\tools\test_overlay_footer.py,1,(kein Import),from calculations import build_project_data,missing_import_added
+.\tools\test_page3_values.py,?,"{""einspeise_art"": ""parts""}","build_project_data({""einspeise_art"": ""parts""})",dict_literal_to_builder
+.\tools\test_page3_values.py,1,(kein Import),from calculations import build_project_data,missing_import_added
+.\tools\test_page4_images.py,?,"{
+  'customer_data':{'first_name':'Test','last_name':'Kunde'},
+  'project_details': {
+    'module_quantity': 12,
+    'selected_module_capacity_w': 460,
+    'module_cell_technology': 'N-Type TOPCon Halfcut Bifazial',
+    'module_structure': 'Glas-Glas Module',
+    'module_cell_type': 'Monokristalline',
+    'module_version': 'All-Black',
+    'module_guarantee_combined': '30 Jahre Produktgarantie',
+    # Bild-Overrides (wir akzeptieren Base64 direkt)
+    'module_image_b64': png_b64,
+    'inverter_image_b64': png_b64,
+    'storage_image_b64': png_b64,
+    # Modellnamen optional (DB wird u. U. nicht benötigt, da wir Overrides setzen)
+    'selected_inverter_name':'Sun2000 10KTL-M1 10 kW',
+    'selected_inverter_power_kw':10,
+    'selected_inverter_quantity':1,
+    'selected_storage_name':'LUNA2000-7-S1-7kWh Stromspeicher',
+    'selected_storage_storage_power_kw':7.0,
+    'selected_storage_power_kw':7.0,
+  }
+}","build_project_data({
+  'customer_data':{'first_name':'Test','last_name':'Kunde'},
+  'project_details': {
+    'module_quantity': 12,
+    'selected_module_capacity_w': 460,
+    'module_cell_technology': 'N-Type TOPCon Halfcut Bifazial',
+    'module_structure': 'Glas-Glas Module',
+    'module_cell_type': 'Monokristalline',
+    'module_version': 'All-Black',
+    'module_guarantee_combined': '30 Jahre Produktgarantie',
+    # Bild-Overrides (wir akzeptieren Base64 direkt)
+    'module_image_b64': png_b64,
+    'inverter_image_b64': png_b64,
+    'storage_image_b64': png_b64,
+    # Modellnamen optional (DB wird u. U. nicht benötigt, da wir Overrides setzen)
+    'selected_inverter_name':'Sun2000 10KTL-M1 10 kW',
+    'selected_inverter_power_kw':10,
+    'selected_inverter_quantity':1,
+    'selected_storage_name':'LUNA2000-7-S1-7kWh Stromspeicher',
+    'selected_storage_storage_power_kw':7.0,
+    'selected_storage_power_kw':7.0,
+  }
+})",dict_literal_to_builder
+.\tools\test_page4_images.py,1,(kein Import),from calculations import build_project_data,missing_import_added

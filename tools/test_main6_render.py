@@ -9,8 +9,9 @@ if str(PROJECT_ROOT) not in sys.path:
     sys.path.insert(0, str(PROJECT_ROOT))
 
 import pdf_generator as pg
+from calculations import build_project_data
 
-project_data = {
+project_data = build_project_data({
     'customer_data': {
         'salutation': 'Herr',
         'title': '',
@@ -43,7 +44,7 @@ project_data = {
         'stromkosten_heizung_euro_monat': 50,
         'electricity_price_increase_annual_percent': 5,
     },
-}
+})
 
 analysis_results = {
     'annual_pv_production_kwh': 8251.92,
